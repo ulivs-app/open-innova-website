@@ -1,5 +1,5 @@
 baseURL = "https://openinnova.it"
-languageCode = "it"
+locale = "it"
 title = "Open Innova"
 
 # Default language (Italian)
@@ -12,10 +12,8 @@ enableEmoji = true
 # Pluralize titles
 pluralizeListTitles = false
 
-# Taxonomies
-[taxonomies]
-tag = "tags"
-category = "categories"
+# Taxonomies disabled until needed (no content currently uses tags/categories)
+disableKinds = ["taxonomy", "term"]
 
 # Output formats
 [outputs]
@@ -26,8 +24,8 @@ section = ["HTML", "RSS"]
 # Multilingual configuration
 [languages]
 [languages.it]
-languageName = "Italiano"
-languageCode = "it"
+label = "Italiano"
+locale = "it"
 weight = 1
 contentDir = "content/it"
 
@@ -47,13 +45,18 @@ url = "/consulenza/"
 weight = 3
 
 [[languages.it.menu.main]]
-name = "Contatti"
-url = "/contatti/"
+name = "Open Innovation"
+url = "/open-innovation/"
 weight = 4
 
+[[languages.it.menu.main]]
+name = "Contatti"
+url = "/contatti/"
+weight = 5
+
 [languages.en]
-languageName = "English"
-languageCode = "en"
+label = "English"
+locale = "en"
 weight = 2
 contentDir = "content/en"
 
@@ -88,3 +91,9 @@ hardWraps = false
 
 [markup.goldmark.renderer]
 unsafe = true
+
+# Table of contents: only h2/h3, unordered
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 3
+ordered = false

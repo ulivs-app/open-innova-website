@@ -10,6 +10,14 @@
     {{- end }}
 
     <div class="page-body">
+      {{- $showToc := and (ne .Params.toc false) .TableOfContents -}}
+      {{- if $showToc }}
+      <aside class="toc" aria-label="{{ if eq .Language.Lang "it" }}Indice della pagina{{ else }}Page table of contents{{ end }}">
+        <p class="toc-title">{{ if eq .Language.Lang "it" }}In questa pagina{{ else }}On this page{{ end }}</p>
+        {{ .TableOfContents }}
+      </aside>
+      {{- end }}
+
       {{- .Content }}
     </div>
 

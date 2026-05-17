@@ -16,6 +16,12 @@ data/company.json
 dist/
 .astro/
 
+# Hugo build output, cache and lock files.
+public/
+resources/_gen/
+.hugo_build.lock
+hugo_stats.json
+
 # === NODE.JS ===
 # Dependencies and package lock files.
 node_modules/

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}" dir="ltr">
+<html lang="{{ .Language.Lang }}" dir="ltr">
 <head>
   {{- partial "head.html" . -}}
 </head>
@@ -16,9 +16,57 @@
     {{- partial "footer.html" . -}}
   </footer>
 
+  <button type="button" class="back-to-top" aria-label="{{ if eq .Language.Lang "it" }}Torna su{{ else }}Back to top{{ end }}">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <button type="button" class="cookie-badge" aria-label="{{ if eq .Language.Lang "it" }}Niente cookie su questo sito{{ else }}This site uses no cookies{{ end }}" data-open-cookie-modal>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 2a10 10 0 1 0 10 10c-2 0-3-1-3-3s-1-3-3-3-3-1-3-3-1-1-1-1Z"/>
+      <circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/>
+      <circle cx="13.5" cy="14" r="1.1" fill="currentColor" stroke="none"/>
+      <circle cx="8" cy="15.5" r="1.1" fill="currentColor" stroke="none"/>
+      <line x1="4" y1="20" x2="20" y2="4"/>
+    </svg>
+  </button>
+
+  <dialog id="cookie-modal" class="cookie-modal" aria-labelledby="cookie-modal-title">
+    <button type="button" class="cookie-modal__close" aria-label="{{ if eq .Language.Lang "it" }}Chiudi{{ else }}Close{{ end }}" data-close-cookie-modal>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="6" y1="6" x2="18" y2="18"/>
+        <line x1="18" y1="6" x2="6" y2="18"/>
+      </svg>
+    </button>
+    <h2 id="cookie-modal-title" class="cookie-modal__title">
+      {{- if eq .Language.Lang "it" -}}
+      Sorpreso che non ti abbiamo chiesto il consenso?
+      {{- else -}}
+      Surprised we never asked for your consent?
+      {{- end -}}
+    </h2>
+    <p class="cookie-modal__body">
+      {{- if eq .Language.Lang "it" -}}
+      Perché non usiamo cookie. Nessuno: né tecnici di tracciamento, né di profilazione. <br>Non sappiamo chi sei, da dove arrivi o cosa hai guardato, e non vogliamo saperlo, per preservare completamente la tua privacy. <br>La tua visita è completamente anonima.
+      {{- else -}}
+      Because we don't use cookies. None: no tracking cookies, no profiling cookies. <br>We don't know who you are, where you came from, or what you looked at — and we don't want to. <br>Your visit is fully anonymous.
+      {{- end -}}
+    </p>
+    <p class="cookie-modal__body">
+      {{- if eq .Language.Lang "it" -}}
+      Curioso dei dettagli tecnici? <a href="{{ .Site.BaseURL }}privacy/">Leggi la nostra privacy policy</a>.
+      {{- else -}}
+      Curious about the details? <a href="{{ .Site.BaseURL }}{{ if eq .Language.Lang "en" }}en/{{ end }}privacy/">Read our privacy policy</a>.
+      {{- end -}}
+    </p>
+  </dialog>
+
+  <script src="{{ .Site.BaseURL }}scripts.js" defer></script>
+
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
-  {{- $company := .Site.Data.company -}}
+  {{- $company := hugo.Data.company -}}
   {
     "@context": "https://schema.org",
     "@type": "Organization",

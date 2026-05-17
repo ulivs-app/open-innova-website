@@ -34,7 +34,7 @@
           {{- if $isCurrentLang }} aria-current="true"{{ end }}
           lang="{{ .Language.Lang }}"
         >
-          {{ .Language.LanguageName | upper }}
+          {{ .Language.Label | upper }}
         </a>
         {{- end }}
       </div>
