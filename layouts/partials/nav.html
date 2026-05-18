@@ -9,7 +9,7 @@
     <!-- Main Menu -->
     <ul class="navbar-menu" role="menubar">
       {{- range .Site.Menus.main }}
-      {{- $isCurrent := (or (.URL | strings.HasPrefix $.Permalink) (eq .URL $.Page.Permalink)) }}
+      {{- $isCurrent := eq .URL $.RelPermalink }}
       <li role="none">
         <a
           href="{{ .URL }}"

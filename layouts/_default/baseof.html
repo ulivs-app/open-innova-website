@@ -55,9 +55,9 @@
     </p>
     <p class="cookie-modal__body">
       {{- if eq .Language.Lang "it" -}}
-      Curioso dei dettagli tecnici? <a href="{{ .Site.BaseURL }}privacy/">Leggi la nostra privacy policy</a>.
+      Vuoi i <a href="{{ .Site.BaseURL }}colophon/">dettagli tecnici</a>? Spieghiamo come è fatto il sito e cosa abbiamo deciso di non usare. Per la versione formale, leggi la <a href="{{ .Site.BaseURL }}privacy/">privacy policy</a>.
       {{- else -}}
-      Curious about the details? <a href="{{ .Site.BaseURL }}{{ if eq .Language.Lang "en" }}en/{{ end }}privacy/">Read our privacy policy</a>.
+      Want the <a href="{{ .Site.BaseURL }}en/colophon/">technical details</a>? We explain how the site is built and what we chose not to use. For the formal version, read our <a href="{{ .Site.BaseURL }}en/privacy/">privacy policy</a>.
       {{- end -}}
     </p>
   </dialog>

@@ -3,7 +3,9 @@
    =========================== */
 
 :root {
-  /* Colors — Open Innova brand palette */
+  color-scheme: light;
+
+  /* Colors — Open Innova brand palette (light theme) */
   --color-primary: #1a2647;          /* navy — logo background */
   --color-primary-dark: #0f1830;
   --color-primary-light: #e8ecf5;
@@ -11,12 +13,18 @@
   --color-secondary-dark: #1f5641;
   --color-secondary-light: #4ca37f;
   --color-accent: #4ca37f;           /* lighter green for highlights */
-  --color-text: #1a2647;             /* aligned with primary navy */
+  --color-heading: #1a2647;          /* titles, strong UI text */
+  --color-text: #1a2647;             /* body text */
   --color-text-light: #5a6580;
   --color-text-lighter: #9099ad;
-  --color-surface: #ffffff;
-  --color-surface-light: #f4f6fa;
+  --color-surface: #ffffff;          /* page background */
+  --color-surface-light: #f4f6fa;    /* alt rows, form bg, TOC bg */
+  --color-surface-elevated: #ffffff; /* cards, modals */
   --color-border: #d9deea;
+  --color-link: #2d7a5f;             /* in-content links */
+  --color-link-hover: #1f5641;
+  --color-overlay: rgba(26, 38, 71, 0.55);
+  --color-input-bg: #ffffff;
   --color-error: #d32f2f;
   --color-success: #2d7a5f;
   --color-warning: #f57c00;
@@ -76,6 +84,73 @@
 }
 
 /* ===========================
+   Dark theme (follows OS preference — no toggle, no storage)
+   =========================== */
+
+@media (prefers-color-scheme: dark) {
+  /* Buttons: navy fill on dark bg has weak contrast — promote secondary green */
+  .btn-primary {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+  }
+  .btn-primary:hover,
+  .btn-primary:focus-visible {
+    background-color: var(--color-secondary-light);
+    border-color: var(--color-secondary-light);
+  }
+  .btn-primary:active {
+    background-color: var(--color-secondary-dark);
+    border-color: var(--color-secondary-dark);
+  }
+
+  /* Outline button hover/active: navy on dark is invisible — use green instead */
+  .btn-outline:hover,
+  .btn-outline:focus-visible {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+  }
+  .btn-outline:active {
+    background-color: var(--color-secondary-dark);
+    border-color: var(--color-secondary-dark);
+  }
+
+  /* Table header looks better with the same brand-green treatment in dark */
+  .page-body thead {
+    background-color: var(--color-secondary-dark);
+  }
+
+  :root {
+    color-scheme: dark;
+
+    /* Brand stays — we shift surrounding surfaces and text instead */
+    --color-primary: #1a2647;
+    --color-primary-dark: #0f1830;
+    --color-primary-light: #232f50;
+    --color-secondary: #4ca37f;
+    --color-secondary-dark: #2d7a5f;
+    --color-secondary-light: #6dc4a0;
+    --color-accent: #6dc4a0;
+    --color-heading: #f0f3fa;
+    --color-text: #e1e6f1;
+    --color-text-light: #a8b0c4;
+    --color-text-lighter: #6b7796;
+    --color-surface: #0e1530;
+    --color-surface-light: #161e3d;
+    --color-surface-elevated: #1c2547;
+    --color-border: #2a3458;
+    --color-link: #6dc4a0;
+    --color-link-hover: #8fdab8;
+    --color-overlay: rgba(2, 6, 18, 0.7);
+    --color-input-bg: #0e1530;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.55);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ===========================
    CSS Reset & Base Styles
    =========================== */
 
@@ -89,6 +164,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Leave room for the sticky header (70px) + a little breathing space */
+  scroll-padding-top: calc(70px + var(--space-md));
 }
 
 body {
@@ -147,14 +224,14 @@ p {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-link);
   text-decoration: none;
   transition: color var(--duration-fast) var(--timing-function);
 }
 
 a:hover,
 a:focus {
-  color: var(--color-primary-dark);
+  color: var(--color-link-hover);
   text-decoration: underline;
 }
 
@@ -172,7 +249,7 @@ code {
 }
 
 pre {
-  background-color: var(--color-text);
+  background-color: var(--color-primary);
   color: #fff;
   padding: var(--space-lg);
   border-radius: var(--radius-lg);
@@ -243,7 +320,7 @@ header {
 
 .logo-text {
   font-size: var(--font-size-lg);
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 .navbar-menu {
@@ -262,14 +339,21 @@ header {
 }
 
 .navbar-link:hover {
-  color: var(--color-primary);
+  color: var(--color-heading);
   background-color: var(--color-primary-light);
 }
 
 .navbar-link.active {
-  color: var(--color-primary);
+  color: var(--color-secondary);
   font-weight: var(--font-weight-semibold);
-  border-bottom: 2px solid var(--color-primary);
+  background-color: var(--color-primary-light);
+  box-shadow: inset 0 -2px 0 var(--color-secondary);
+}
+
+.navbar-link.active:hover,
+.navbar-link.active:focus {
+  color: var(--color-link-hover);
+  background-color: var(--color-primary-light);
 }
 
 .navbar-languages {
@@ -291,12 +375,12 @@ header {
 }
 
 .lang-link:hover {
-  color: var(--color-primary);
+  color: var(--color-heading);
   background-color: var(--color-primary-light);
 }
 
 .lang-link.active {
-  color: var(--color-primary);
+  color: var(--color-heading);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -402,11 +486,11 @@ header {
   color: #ffffff;
 }
 
-/* Outline: navy on light backgrounds */
+/* Outline: navy on light backgrounds (text/border share --color-heading so they stay consistent in dark mode) */
 .btn-outline {
   background-color: transparent;
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  color: var(--color-heading);
+  border: 2px solid var(--color-heading);
 }
 
 .btn-outline:hover,
@@ -465,7 +549,7 @@ header {
    =========================== */
 
 .card {
-  background-color: var(--color-surface);
+  background-color: var(--color-surface-elevated);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
@@ -509,7 +593,7 @@ header {
 .page-title {
   text-align: center;
   margin-bottom: var(--space-xl);
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 .page-subtitle {
@@ -529,7 +613,7 @@ header {
   font-weight: var(--font-weight-bold);
   letter-spacing: -0.015em;
   line-height: 1.15;
-  color: var(--color-primary);
+  color: var(--color-heading);
   margin-top: var(--space-4xl);
   margin-bottom: var(--space-lg);
   margin-left: calc(-1 * var(--space-xl));
@@ -589,7 +673,7 @@ header {
   border-collapse: separate;
   border-spacing: 0;
   font-size: var(--font-size-base);
-  background-color: var(--color-surface);
+  background-color: var(--color-surface-elevated);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -627,7 +711,7 @@ header {
   text-align: right;
   font-variant-numeric: tabular-nums;
   font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 .page-body tbody tr:nth-child(even) td {
@@ -641,7 +725,7 @@ header {
 /* Highlight a row when both cells are wrapped in <strong> (markdown **bold**) */
 .page-body tbody tr:has(td:first-child strong):has(td:last-child strong) td {
   background-color: rgba(45, 122, 95, 0.12);
-  color: var(--color-primary);
+  color: var(--color-heading);
   font-weight: var(--font-weight-semibold);
   border-top-color: var(--color-secondary);
   border-bottom-color: var(--color-secondary);
@@ -684,7 +768,7 @@ header {
   display: block;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
+  color: var(--color-heading);
   letter-spacing: 0.01em;
 }
 
@@ -707,7 +791,7 @@ header {
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
   color: var(--color-text);
-  background-color: var(--color-surface);
+  background-color: var(--color-input-bg);
   padding: 0.7rem 0.9rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -853,9 +937,9 @@ header {
   max-width: 480px;
   width: calc(100% - 2 * var(--space-lg));
   padding: var(--space-2xl);
-  border: none;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  background-color: var(--color-surface);
+  background-color: var(--color-surface-elevated);
   color: var(--color-text);
   box-shadow: var(--shadow-xl);
   position: fixed;
@@ -865,7 +949,7 @@ header {
 }
 
 .cookie-modal::backdrop {
-  background-color: rgba(26, 38, 71, 0.55);
+  background-color: var(--color-overlay);
 }
 
 .cookie-modal__close {
@@ -889,14 +973,14 @@ header {
 .cookie-modal__close:hover,
 .cookie-modal__close:focus {
   background-color: var(--color-surface-light);
-  color: var(--color-primary);
+  color: var(--color-heading);
   outline: none;
 }
 
 .cookie-modal__title {
   font-size: var(--font-size-2xl);
   line-height: var(--line-height-tight);
-  color: var(--color-primary);
+  color: var(--color-heading);
   margin: 0 var(--space-2xl) var(--space-md) 0;
 }
 
@@ -912,12 +996,12 @@ header {
 }
 
 .cookie-modal__body a {
-  color: var(--color-secondary);
+  color: var(--color-link);
   text-decoration: underline;
 }
 
 .cookie-modal__body a:hover {
-  color: var(--color-secondary-dark);
+  color: var(--color-link-hover);
 }
 
 @media (max-width: 768px) {
@@ -1009,7 +1093,7 @@ header {
    =========================== */
 
 footer {
-  background-color: var(--color-text);
+  background-color: var(--color-primary);
   color: white;
   padding: var(--space-3xl) var(--space-lg) var(--space-lg);
   margin-top: var(--space-4xl);
