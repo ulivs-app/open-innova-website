@@ -1,181 +1,171 @@
 # Open Innova Website
 
-Static website for [Open Innova](https://openinnova.it) — open innovation consulting & software.
+Static website for [Open Innova](https://openinnova.it) — open innovation consulting and custom software.
 
-Built with [Hugo](https://gohugo.io), deployed to AWS S3. Zero JavaScript by default, SEO-optimized, AI-crawler friendly.
+Built with [Hugo](https://gohugo.io), deployed to AWS S3. Bilingual (Italian / English), minimal JavaScript, no cookies, no trackers, no external CDN.
 
-## Quick Start
+## Quick start
 
 ### Prerequisites
 
-- **Hugo** (v0.100+) — Download from https://gohugo.io/installation/
-- **AWS CLI** (v2) — For deployment (optional if just developing locally)
+- **Hugo extended** v0.100+ — https://gohugo.io/installation/
+- **AWS CLI** v2 — only needed for deployment
 
-### Local Development
+### Local development
 
 ```bash
-# Clone the repository
-git clone https://github.com/open-innova/website.git
-cd website
+git clone https://github.com/ulivs-app/open-innova-website.git
+cd open-innova-website
 
-# Start local dev server (with live reload)
+# Start local dev server with live reload
 hugo server
 
-# Visit http://localhost:1313 in your browser
+# Visit http://localhost:1313/  (IT)
+# Visit http://localhost:1313/en/  (EN)
 ```
 
-The site will rebuild automatically when you edit files.
-
-### Build for Production
+To preview pages marked `draft: true` locally:
 
 ```bash
-# Generate static HTML to public/
+hugo server --buildDrafts
+```
+
+### Build for production
+
+```bash
 hugo
-
-# Output goes to public/ directory
-ls public/  # View generated files
+# Output goes to public/
 ```
 
-## Project Structure
+Draft pages are excluded from the production build.
+
+## Project structure
 
 ```
-├── hugo.toml               # Hugo configuration (site URL, languages, etc.)
-├── content/                # Markdown pages
-│   ├── it/                 # Italian pages (default locale)
-│   └── en/                 # English pages
-├── layouts/                # HTML templates
-│   ├── _default/           # Base templates
-│   └── partials/           # Reusable components
-├── static/                 # Static files (robots.txt, llms.txt, etc.)
+├── hugo.toml               # Hugo configuration (baseURL, languages, menus)
+├── content/
+│   ├── it/                 # Italian pages (default locale, served at /)
+│   └── en/                 # English pages (served at /en/)
+├── layouts/
+│   ├── _default/           # Base templates (baseof.html, single.html)
+│   ├── partials/           # Reusable components (head, nav, hero, footer)
+│   └── index.html          # Homepage template
+├── static/                 # Files copied verbatim to the site root
+│   ├── style.css
+│   ├── scripts.js
+│   ├── favicon.svg
+│   ├── images/
+│   ├── robots.txt
+│   └── llms.txt
 ├── data/
-│   ├── company.example.json  # Template for company data (COMMIT)
-│   └── company.json          # Private company data (GITIGNORED)
-├── docs/                   # Documentation
-└── scripts/                # Deployment scripts
-    └── deploy.sh           # S3 deployment automation
+│   ├── company.example.json   # Public template (committed)
+│   └── company.json           # Real company data (gitignored)
+├── docs/                   # Internal documentation
+└── scripts/
+    └── deploy.sh           # AWS S3 deployment
 ```
 
-## Directory Semantics
+## Content management
 
-- **`src/`** → MIT open source (this is `layouts/` in Hugo)
-- **`assets/`** → Proprietary brand assets (gitignored)
-- **`content/`** → Proprietary marketing copy (gitignored)
-- **`data/company.json`** → Private company data (gitignored)
-- **`data/company.example.json`** → Public template (committed)
+### Adding a page
 
-## Content Management
-
-### Adding a New Page
-
-1. Create a Markdown file in `content/it/` (or `content/en/` for English):
+Create a Markdown file in `content/it/` (and the translation in `content/en/`):
 
 ```markdown
 ---
-title: "Page Title"
-description: "SEO description"
+title: "Page title"
+description: "SEO description (~120-150 chars)"
 draft: false
 ---
 
-## Your Content Here
+## Section
 
-This is a standard Markdown page. Hugo converts it to HTML.
+Content goes here.
 ```
 
-2. The page is automatically available at:
-   - Italian: `/page-slug/`
-   - English: `/en/page-slug/`
+URLs are derived from filename:
+- `content/it/foo.md` → `/foo/`
+- `content/en/foo.md` → `/en/foo/`
 
-### Editing Existing Pages
+### Draft pages
 
-Edit the corresponding `.md` file in `content/it/` or `content/en/`. Changes are visible on the dev server immediately.
+Set `draft: true` in the frontmatter to keep a page out of the production build.
+Internal links pointing to a draft page are rendered as disabled `<span>` elements
+with a "Page work in progress" tooltip and a `WIP` badge — both in the main menu
+and in hero CTAs. This is automatic: no manual link disabling required.
 
-### Using Company Data
+### SEO and metadata
 
-All company-specific data (name, P.IVA, founders, etc.) comes from `data/company.json` (private).
+- `<title>` uses the page's `title` frontmatter, suffixed with the site title
+  (`Open Innova`). On the homepage the site title is not appended (avoids
+  duplication).
+- `<meta name="description">` uses the `description` frontmatter when present,
+  falling back to the page summary.
+- `hreflang` alternates between IT and EN are emitted automatically when both
+  translations exist.
+- Sitemap (`/sitemap.xml`) and RSS (`/index.xml`) are generated by Hugo.
 
-Template in `data/company.example.json`:
+### Company data
 
-```json
-{
-  "name": "Open Innova S.r.l.",
-  "vatId": "IT00000000000",
-  "founders": [
-    { "name": "Mario Rossi", "role": "CEO", "email": "mario@openinnova.it" }
-  ]
-}
-```
-
-This data is injected into templates automatically.
+`data/company.json` (gitignored) holds the canonical company facts (legal name,
+VAT, addresses, founders, contact emails) used across templates. The committed
+`data/company.example.json` is a template — copy it to `company.json` and fill
+in the real values.
 
 ## Styling
 
-All CSS is in `static/style.css`. Design is based on CSS custom properties (variables):
+CSS is hand-written, in `static/style.css`. The design system is driven by CSS
+custom properties:
 
 ```css
 :root {
-  --color-primary: #0066cc;
-  --color-text: #1a1a1a;
-  --space-lg: 1.5rem;
+  --color-primary: ...;
+  --color-secondary: ...;
+  --space-md: 1rem;
   /* ... */
 }
 ```
 
-To change the brand:
-1. Edit colors/spacing in `static/style.css`
-2. All pages automatically inherit the new design
+No CSS framework. No build step. The stylesheet is served as-is.
 
-No CSS framework (Tailwind, Bootstrap) — pure CSS for maximum control and simplicity.
+## AI agents and search
 
-## SEO & Best Practices
-
-- ✅ Semantic HTML: `<main>`, `<article>`, `<section>`, `<nav>`, `<footer>`
-- ✅ Structured data: JSON-LD Organization schema on all pages
-- ✅ Language alternates: `hreflang` links for IT/EN
-- ✅ Accessibility: ARIA labels, proper heading hierarchy
-- ✅ Sitemap: Auto-generated by Hugo (https://openinnova.it/sitemap.xml)
-- ✅ robots.txt: Allows all crawlers including GPTBot, ClaudeBot
-- ✅ llms.txt: AI agent description (https://openinnova.it/llms.txt)
+- `static/robots.txt` explicitly allows the major AI crawlers
+  (GPTBot, ClaudeBot, Google-Extended, PerplexityBot, Applebot-Extended, etc.)
+  in addition to standard search engines.
+- `static/llms.txt` (served at `/llms.txt`) is a machine-readable summary of the
+  company, products, services, and key pages. Keep it in sync when content
+  changes.
 
 ## Deployment
 
 ### To AWS S3
 
 ```bash
-# Ensure you have AWS credentials configured
 export AWS_PROFILE=open-innova-deploy
-# or: export AWS_ACCESS_KEY_ID=... AWS_SECRET_ACCESS_KEY=...
-
-# Deploy (builds + syncs to S3)
 ./scripts/deploy.sh
-
-# You'll be asked to confirm before deployment proceeds
 ```
 
-For detailed setup, see [docs/deployment-aws-s3.md](docs/deployment-aws-s3.md).
+The script:
 
-### What the Deploy Script Does
-
-1. Builds the site with `hugo`
-2. Syncs to S3 with proper cache headers
-3. Sets HTML to `must-revalidate` (no cache)
-4. Sets assets to 1-year cache (immutable)
+1. Runs `hugo` (excluding drafts)
+2. Syncs `public/` to S3 with proper cache headers
+3. Sets HTML to `must-revalidate` (no caching)
+4. Sets static assets to 1-year `immutable` cache
 5. Invalidates CloudFront (if configured)
-6. Runs security checks (no credentials in files)
+6. Runs a basic credential scan before upload
 
-### Manual Deploy
+See [docs/deployment-aws-s3.md](docs/deployment-aws-s3.md) for the full setup.
 
-If not using the script:
+### Manual deploy
 
 ```bash
-# Build
 hugo
 
-# Sync to S3
 aws s3 sync public/ s3://openinnova-website \
   --delete \
   --cache-control "public, max-age=31536000, immutable"
 
-# Override HTML files to not cache
 aws s3 cp public/ s3://openinnova-website/ \
   --recursive \
   --exclude "*" \
@@ -186,93 +176,72 @@ aws s3 cp public/ s3://openinnova-website/ \
 
 ## Security
 
-- 🔒 No credentials in code (git history is clean)
-- 🔒 `company.json` is gitignored (private)
-- 🔒 HTTPS via CloudFront (when deployed)
-- 🔒 Static HTML (no server-side code, no database)
-- 🔒 AWS bucket policy: GetObject only (no write/delete from public)
+- No credentials in source — `company.json` and any private keys are gitignored
+- HTTPS via CloudFront when deployed
+- Strict Content Security Policy: only same-origin scripts/styles
+- Static HTML only — no server-side code, no database
+- S3 bucket policy: `GetObject` only
 
-See [SECURITY.md](SECURITY.md) for details.
+See [SECURITY.md](SECURITY.md).
 
 ## Contributing
 
-We welcome contributions to the open-source code (`layouts/`, `static/`).
+The open-source parts of this repository (`layouts/`, `static/`, `scripts/`) are
+MIT-licensed and welcome external contributions. Brand assets, copy, and
+company data are proprietary.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for:
-- Code style guidelines
-- Commit message format
-- Pull request process
-- What's out of scope (brand assets, proprietary content)
+See [CONTRIBUTING.md](CONTRIBUTING.md) for code style, commit conventions, and
+the scope of accepted contributions.
 
 ## License
 
-- **Code** (`layouts/`, `static/`, scripts): MIT License
-- **Brand** (logos, content, product names): Copyright Open Innova S.r.l. — all rights reserved
+- **Code** (`layouts/`, `static/`, scripts): MIT — see [LICENSE](LICENSE)
+- **Brand and copy** (logo, content, product names): proprietary, Copyright Open Innova S.r.l.
 
-See [NOTICE](NOTICE) and [LICENSE](LICENSE) for details.
-
-## Community
-
-- 📧 **Email:** info@openinnova.it
-- 🔗 **LinkedIn:** [open-innova](https://linkedin.com/company/open-innova)
-- 💻 **GitHub:** [open-innova](https://github.com/open-innova)
-- 📖 **Documentation:** [docs/](docs/)
+See [NOTICE](NOTICE) for attribution details.
 
 ## Troubleshooting
 
-### Hugo Won't Start
+### Hugo will not start
 
 ```bash
-# Check Hugo version
 hugo version
-
-# Should be v0.100 or higher
+# Requires v0.100 or higher, extended
 ```
 
-### Changes Not Showing Locally
+### Local changes not showing
 
 ```bash
-# Clear Hugo cache
-rm -rf resources/
+rm -rf resources/ public/
 hugo server
 ```
 
-### Deployment Fails
+### Deployment fails
 
 ```bash
-# Check AWS credentials
 aws sts get-caller-identity
-
-# Check S3 bucket exists
 aws s3 ls s3://openinnova-website/
-
-# See full error: remove the || pattern in deploy.sh temporarily
 ```
 
-### Large CSS/JS Bundle?
-
-This shouldn't happen — we use pure CSS, no JS frameworks. Check:
-- Are you accidentally including external CDN links?
-- Did you add a CSS framework? Remove it.
+If the deploy script swallows the error, remove the `|| ...` pattern in
+`scripts/deploy.sh` temporarily to see the full message.
 
 ## Performance
 
-Goal: **Lighthouse 100/100** on all pages.
+Target: Lighthouse 100/100 on all pages.
 
-- Zero JavaScript (by default)
-- Minimal CSS (~10KB minified)
-- Images optimized (WebP, lazy-loaded)
-- HTML served from S3 (fast, distributed)
-- CloudFront CDN (optional, for HTTPS & edge caching)
+- Minimal JavaScript (a few KB of vanilla JS)
+- Hand-written CSS, no framework
+- System fonts, no Google Fonts
+- No external resources, no CDN-hosted libraries
+- HTML served from S3, optional CloudFront edge cache
 
-Check performance: https://pagespeed.web.dev
+Per-page footprint (data, energy, CO₂e, water) is documented at
+https://openinnova.it/en/transparency/.
 
 ---
 
-**For more info:**
-- [CONTRIBUTING.md](CONTRIBUTING.md) — How to contribute
-- [SECURITY.md](SECURITY.md) — Security practices
-- [docs/deployment-aws-s3.md](docs/deployment-aws-s3.md) — Deployment guide
-- [NOTICE](NOTICE) — License & attribution
-
-**Ready to start?** `hugo server` and open http://localhost:1313 🚀
+- [CONTRIBUTING.md](CONTRIBUTING.md) — how to contribute
+- [SECURITY.md](SECURITY.md) — security practices
+- [docs/deployment-aws-s3.md](docs/deployment-aws-s3.md) — deployment guide
+- [NOTICE](NOTICE) — license and attribution

@@ -9,7 +9,20 @@
     <ul class="navbar-menu" role="menubar">
       {{- range .Site.Menus.main }}
       {{- $isCurrent := eq .URL $.RelPermalink }}
+      {{- $isInternal := hasPrefix .URL "/" }}
+      {{- $target := index (where site.RegularPages "RelPermalink" .URL) 0 }}
+      {{- $isWip := and $isInternal (not $target) }}
       <li role="none">
+        {{- if $isWip }}
+        <span
+          class="navbar-link is-disabled"
+          role="link"
+          aria-disabled="true"
+          title="{{ if eq $.Language.Lang "it" }}Pagina in costruzione{{ else }}Page work in progress{{ end }}"
+        >
+          {{ .Name }}
+        </span>
+        {{- else }}
         <a
           href="{{ .URL }}"
           class="navbar-link{{ if $isCurrent }} active{{ end }}"
@@ -17,6 +30,7 @@
         >
           {{ .Name }}
         </a>
+        {{- end }}
       </li>
       {{- end }}
     </ul>
@@ -67,7 +81,20 @@
     <ul class="nav-menu__list" role="menu">
       {{- range .Site.Menus.main }}
       {{- $isCurrent := eq .URL $.RelPermalink }}
+      {{- $isInternal := hasPrefix .URL "/" }}
+      {{- $target := index (where site.RegularPages "RelPermalink" .URL) 0 }}
+      {{- $isWip := and $isInternal (not $target) }}
       <li role="none">
+        {{- if $isWip }}
+        <span
+          class="nav-menu__link is-disabled"
+          role="link"
+          aria-disabled="true"
+          title="{{ if eq $.Language.Lang "it" }}Pagina in costruzione{{ else }}Page work in progress{{ end }}"
+        >
+          {{ .Name }}
+        </span>
+        {{- else }}
         <a
           href="{{ .URL }}"
           class="nav-menu__link{{ if $isCurrent }} active{{ end }}"
@@ -76,6 +103,7 @@
         >
           {{ .Name }}
         </a>
+        {{- end }}
       </li>
       {{- end }}
     </ul>

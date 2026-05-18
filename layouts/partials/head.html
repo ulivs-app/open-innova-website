@@ -4,8 +4,10 @@
 <meta name="theme-color" content="#0e1530" media="(prefers-color-scheme: dark)">
 
 {{- /* Page Title & Meta */ -}}
-<title>{{ .Title }} — {{ .Site.Title }}</title>
-<meta name="description" content="{{ .Summary | plainify | truncate 160 }}">
+{{- $title := cond .IsHome .Title (printf "%s — %s" .Title .Site.Title) -}}
+{{- $description := or .Description (.Summary | plainify | truncate 160) -}}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
 
 {{- /* Canonical URL */ -}}
 <link rel="canonical" href="{{ .Permalink }}">
@@ -19,8 +21,8 @@
 {{- end }}
 
 {{- /* Open Graph Tags */ -}}
-<meta property="og:title" content="{{ .Title }}">
-<meta property="og:description" content="{{ .Summary | plainify | truncate 160 }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
@@ -33,8 +35,8 @@
 
 {{- /* Twitter Card */ -}}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ .Title }}">
-<meta name="twitter:description" content="{{ .Summary | plainify | truncate 160 }}">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
 
 {{- /* Robots & Crawlers */ -}}
 <meta name="robots" content="index, follow">

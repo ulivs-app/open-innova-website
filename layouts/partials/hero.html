@@ -11,8 +11,21 @@
 
     {{- if .Params.hero.cta }}
     <div class="hero-cta">
+      {{- $lang := .Language.Lang }}
       {{- range .Params.hero.cta }}
+      {{- $isInternal := hasPrefix .url "/" }}
+      {{- $target := index (where site.RegularPages "RelPermalink" .url) 0 }}
+      {{- $isWip := and $isInternal (not $target) }}
+      {{- if $isWip }}
+      <span
+        class="btn {{ .style | default "btn-primary" }} is-disabled"
+        role="link"
+        aria-disabled="true"
+        title="{{ if eq $lang "it" }}Pagina in costruzione{{ else }}Page work in progress{{ end }}"
+      >{{ .text }}</span>
+      {{- else }}
       <a href="{{ .url }}" class="btn {{ .style | default "btn-primary" }}">{{ .text }}</a>
+      {{- end }}
       {{- end }}
     </div>
     {{- end }}

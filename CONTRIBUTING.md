@@ -86,7 +86,7 @@ Verified nav menu opens/closes correctly and doesn't overlap content.
 - Export types for reuse
 
 ```typescript
-// ✓ Good
+// Good
 export interface Product {
   id: string
   name: string
@@ -94,7 +94,7 @@ export interface Product {
   category: 'software' | 'consulting'
 }
 
-// ✗ Avoid
+// Avoid
 const p: any = { /* ... */ }
 ```
 
@@ -105,7 +105,7 @@ const p: any = { /* ... */ }
 - Never use `<div>` for interactive elements (use `<button>`, `<a>`)
 
 ```astro
-<!-- ✓ Good -->
+<!-- Good -->
 <img
   src="/images/founders/mario.jpg"
   alt="Mario Rossi, CEO and co-founder of Open Innova"
@@ -113,7 +113,7 @@ const p: any = { /* ... */ }
   height={400}
 />
 
-<!-- ✗ Avoid -->
+<!-- Avoid -->
 <div onclick="...">Click me</div>
 <img src="image.jpg" />
 ```
@@ -124,14 +124,14 @@ const p: any = { /* ... */ }
 - Use semantic class names
 
 ```css
-/* ✓ Good */
+/* Good */
 .card {
   padding: var(--space-md);
   color: var(--color-text);
   background: var(--color-surface);
 }
 
-/* ✗ Avoid */
+/* Avoid */
 .card {
   padding: 20px;
   color: #333;
@@ -145,7 +145,7 @@ const p: any = { /* ... */ }
 - If a file exceeds ~150 lines, consider splitting it
 
 ```astro
-<!-- ✓ src/components/ProductCard.astro -->
+<!-- src/components/ProductCard.astro -->
 <div class="product-card">
   <h3>{product.name}</h3>
   <p>{product.description}</p>

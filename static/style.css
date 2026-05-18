@@ -726,6 +726,52 @@ header {
   border-color: #ffffff;
 }
 
+/* Disabled CTA (page is draft / work in progress) */
+.btn-disabled,
+.btn.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: auto;
+  position: relative;
+}
+
+.btn-disabled::after,
+.btn.is-disabled::after {
+  content: "WIP";
+  display: inline-block;
+  margin-left: var(--space-sm);
+  padding: 0 0.4em;
+  font-size: 0.7em;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-sm);
+  background-color: rgba(0, 0, 0, 0.15);
+  vertical-align: middle;
+}
+
+/* Disabled nav link (page is draft) */
+.navbar-link.is-disabled,
+.nav-menu__link.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+
+.navbar-link.is-disabled::after,
+.nav-menu__link.is-disabled::after {
+  content: "WIP";
+  display: inline-block;
+  margin-left: var(--space-xs);
+  padding: 0 0.4em;
+  font-size: 0.65em;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  vertical-align: middle;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary-light);
+  color: var(--color-text);
+}
+
 /* ===========================
    Cards
    =========================== */

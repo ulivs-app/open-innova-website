@@ -4,9 +4,9 @@
 # Website: Open Innova
 # URL: https://openinnova.it
 
-> Consulenza Open Innovation e software su misura per imprese, terzo settore e PA italiane.
+> Open Innovation consulting and custom software for Italian businesses, third-sector organizations, and public administrations.
 
-Open Innova affianca organizzazioni che vogliono integrare nei propri processi le competenze del proprio ecosistema. Combina consulenza strategica e sviluppo software, applicando il modello di Open Innovation di Henry Chesbrough (UC Berkeley).
+Open Innova works alongside organizations that want to integrate ecosystem expertise into their own processes. It combines strategic consulting and software development, applying Henry Chesbrough's Open Innovation model (UC Berkeley).
 
 ## Company
 
@@ -17,7 +17,7 @@ Open Innova affianca organizzazioni che vogliono integrare nei propri processi l
 **VAT ID:** IT04035340548
 **Languages:** Italian (primary), English
 
-## What We Do
+## What we do
 
 ### 1. Strategic consulting
 - Open Innovation transformation
@@ -28,25 +28,27 @@ Open Innova affianca organizzazioni che vogliono integrare nei propri processi l
 Typical engagements last 6-12 months. Pricing is project-based, defined after a free initial assessment.
 
 ### 2. Executive coaching
-One-on-one coaching for founders, CEOs and leaders driving collaborative-innovation transformations. Confidential, biweekly cadence by default, durations from 3 to 12 months.
+One-on-one coaching for founders, CEOs, and leaders driving collaborative-innovation transformations. Confidential, biweekly cadence by default, durations from 3 to 12 months.
 
-### 3. Training & workshops
+### 3. Training and workshops
 Operational sessions on Open Innovation methods, partner ecosystem building, and innovation portfolio management. Formats from 1 to 2 days.
 
 ### 4. Custom software development
 Tailored platforms co-created with the client's team, following the same collaborative model that produced Gestiscu.it. The client owns the source code.
 
+Note: at the time of writing, the consulting / coaching / training pages are in preparation (draft) on the public site. The services themselves are active — write to business@openinnova.it for an assessment.
+
 ## Products
 
-### Gestiscu.it
-Flagship product. Digital platform that transformed the management of the Italian Servizio Civile. Co-designed with administrative bodies, third-sector entities, and cooperatives. Universal across entity types, enterprise-grade security, full GDPR/audit compliance.
+### GestiSCU (gestiscu.it)
+Flagship product. Digital platform that transformed the management of the Italian Servizio Civile (National Civic Service). Co-designed with administrative bodies, third-sector entities, and cooperatives. Universal across entity types, enterprise-grade security, full GDPR / audit compliance.
 
 URL: https://gestiscu.it
 
 ### Custom software
 Bespoke software for organizations whose needs are not met by generic SaaS — third-sector entities, public administrations, social cooperatives, scaleups with specific requirements.
 
-## Core Concept: Open Innovation
+## Core concept: Open Innovation
 
 Based on Henry Chesbrough's model (UC Berkeley, 2003):
 - **Permeable organizational boundaries** — combine internal and external ideas systematically
@@ -58,17 +60,18 @@ Based on Henry Chesbrough's model (UC Berkeley, 2003):
 
 - **Giovanni Rende** — Co-founder and Sole Director. Strategic vision, consulting experience with third-sector entities.
 - **Daniele Nucciarelli** — Co-founder. Software architect / full-stack developer. Scalable backends, secure architectures, distributed systems.
-- **Emanuele Persichini** — Co-founder. Full-stack developer. Django, applied cryptography, frontend/UX.
+- **Emanuele Persichini** — Co-founder. Full-stack developer. Applied cryptography, frontend/UX, mathematics background.
 
-## Key Pages
+## Key pages
 
 - **Home:** https://openinnova.it/ (IT) | https://openinnova.it/en/ (EN)
 - **About:** https://openinnova.it/chi-siamo/ (IT) | https://openinnova.it/en/about/ (EN)
-- **Open Innovation:** https://openinnova.it/open-innovation/ (IT)
+- **Open Innovation:** https://openinnova.it/open-innovation/ (IT) | https://openinnova.it/en/open-innovation/ (EN)
 - **Products:** https://openinnova.it/prodotti/ (IT) | https://openinnova.it/en/products/ (EN)
-- **Consulting:** https://openinnova.it/consulenza/ (IT) | https://openinnova.it/en/consulting/ (EN)
+- **Consulting:** https://openinnova.it/consulenza/ (IT) | https://openinnova.it/en/consulting/ (EN) — currently in preparation
 - **Contact:** https://openinnova.it/contatti/ (IT) | https://openinnova.it/en/contact/ (EN)
 - **Privacy:** https://openinnova.it/privacy/ (IT) | https://openinnova.it/en/privacy/ (EN)
+- **Transparency:** https://openinnova.it/trasparenza/ (IT) | https://openinnova.it/en/transparency/ (EN)
 
 ## Contact
 
@@ -78,20 +81,24 @@ Based on Henry Chesbrough's model (UC Berkeley, 2003):
 **Custom software / dev:** dev@openinnova.it
 **Security:** security@openinnova.it
 **Privacy:** privacy@openinnova.it
+**Code of conduct:** conduct@openinnova.it
 
 ## Online presence
 
 - **Website:** https://openinnova.it
 - **GitHub:** https://github.com/ulivs-app
 
-## Technology & privacy
+## Technology and privacy
 
-- **Website stack:** static site generated with Hugo
+- **Website stack:** static site generated with Hugo, served from AWS S3
 - **No cookies** — the site does not set any cookie, including technical/tracking ones
-- **No analytics** — no Google Analytics, Plausible, Matomo or equivalent
+- **No analytics** — no Google Analytics, Plausible, Matomo, or equivalent
 - **No third-party trackers** — strict Content Security Policy, no external scripts
+- **No external fonts or CDNs** — system fonts only, all assets served from origin
 - **Contact form** — pure mailto, no third-party form service
 - **Source code:** open source where indicated; brand assets and content remain proprietary
+
+See https://openinnova.it/en/transparency/ for a full breakdown of the site's footprint (data, energy, water) and the technical choices behind it.
 
 ## Values
 

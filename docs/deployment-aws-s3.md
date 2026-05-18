@@ -82,7 +82,7 @@ aws s3api put-public-access-block \
 - `BlockPublicPolicy=false` — Allow our public bucket policy (we wrote it above)
 - `RestrictPublicBuckets=false` — Allow public access via our policy
 
-This way: public read (via policy) ✓, but no unintended exposure.
+This way: public read (via policy), but no unintended exposure.
 
 ---
 
@@ -124,11 +124,11 @@ aws_secret_access_key = YOUR_SECRET_KEY
 
 Then use: `export AWS_PROFILE=open-innova-deploy`
 
-### ⚠️ What NOT to Do
+### What NOT to Do
 
-- ❌ Never hardcode credentials in scripts or `.env` files
-- ❌ Never commit AWS keys to git
-- ❌ Never pass credentials as arguments: `aws s3 sync --access-key=... --secret=...`
+- Never hardcode credentials in scripts or `.env` files
+- Never commit AWS keys to git
+- Never pass credentials as arguments: `aws s3 sync --access-key=... --secret=...`
 
 ---
 
