@@ -9,8 +9,9 @@ set -e  # Exit on error
 
 # Configuration
 BUCKET_NAME="${S3_BUCKET_NAME:-openinnova-website}"
-ENVIRONMENT="${1:-staging}"
-CF_DISTRIBUTION_ID="${CF_DISTRIBUTION_ID:-}"
+BUCKET_REGION="${S3_BUCKET_REGION:-eu-south-1}"
+ENVIRONMENT="${1:-production}"
+CF_DISTRIBUTION_ID="${CF_DISTRIBUTION_ID:-E2IUEDFNFT7LLX}"
 
 # Colors for output
 RED='\033[0;31m'
@@ -20,15 +21,15 @@ NC='\033[0m' # No Color
 
 # Functions
 log_info() {
-  echo -e "${GREEN}✓${NC} $1"
+  echo -e "${GREEN}[OK]${NC} $1"
 }
 
 log_warn() {
-  echo -e "${YELLOW}⚠${NC} $1"
+  echo -e "${YELLOW}[WARN]${NC} $1"
 }
 
 log_error() {
-  echo -e "${RED}✗${NC} $1"
+  echo -e "${RED}[ERR]${NC} $1"
 }
 
 # Check prerequisites
@@ -109,6 +110,7 @@ deploy_to_s3() {
     --delete \
     --cache-control "public, max-age=31536000, immutable" \
     --exclude "*.html" \
+    --exclude "*.xml" \
     --exclude "robots.txt" \
     --exclude "llms.txt" \
     || {
@@ -116,12 +118,13 @@ deploy_to_s3() {
       exit 1
     }
 
-  # Second sync: HTML files with must-revalidate (always check for updates)
-  log_info "Syncing HTML files with cache revalidation..."
+  # Second sync: HTML, robots, llms, sitemap with must-revalidate
+  log_info "Syncing HTML / sitemap / robots / llms with cache revalidation..."
   aws s3 cp public/ "s3://$BUCKET_NAME/" \
     --recursive \
     --exclude "*" \
     --include "*.html" \
+    --include "*.xml" \
     --include "robots.txt" \
     --include "llms.txt" \
     --cache-control "public, max-age=0, must-revalidate" \
@@ -156,10 +159,13 @@ invalidate_cloudfront() {
 
 # Main flow
 main() {
-  echo "🚀 Open Innova Website Deployment"
-  echo "=================================="
+  echo "Open Innova Website Deployment"
+  echo "=============================="
   echo "Environment: $ENVIRONMENT"
-  echo "Bucket: $BUCKET_NAME"
+  echo "Bucket:      $BUCKET_NAME ($BUCKET_REGION)"
+  if [ -n "$CF_DISTRIBUTION_ID" ]; then
+    echo "CloudFront:  $CF_DISTRIBUTION_ID"
+  fi
   echo
 
   check_prerequisites
@@ -179,11 +185,11 @@ main() {
   invalidate_cloudfront
 
   echo
-  log_info "✅ Deployment complete!"
+  log_info "Deployment complete."
   echo
   echo "Website is live at:"
-  echo "  S3: https://$BUCKET_NAME.s3-website.eu-west-1.amazonaws.com"
-  echo "  Custom domain: https://openinnova.it (if using CloudFront)"
+  echo "  S3 endpoint:    http://$BUCKET_NAME.s3-website.$BUCKET_REGION.amazonaws.com"
+  echo "  Custom domain:  https://openinnova.it"
   echo
 }
 
