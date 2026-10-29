@@ -107,10 +107,12 @@ deploy_to_s3() {
   # First sync: fingerprinted assets get long-lived immutable cache.
   # Files with stable URLs (favicon, HTML, sitemap, robots, llms) are excluded
   # and handled by the second pass with must-revalidate so changes propagate.
+  # macOS Finder metadata (.DS_Store) is never uploaded.
   log_info "Syncing fingerprinted assets with 1-year immutable cache..."
   aws s3 sync public/ "s3://$BUCKET_NAME/" \
     --delete \
     --cache-control "public, max-age=31536000, immutable" \
+    --exclude "*.DS_Store" \
     --exclude "*.html" \
     --exclude "*.xml" \
     --exclude "robots.txt" \
