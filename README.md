@@ -63,7 +63,8 @@ Draft pages are excluded from the production build.
 │   └── company.json           # Real company data (gitignored)
 ├── docs/                   # Internal documentation
 └── scripts/
-    └── deploy.sh           # AWS S3 deployment
+    ├── deploy.sh           # AWS S3 deployment
+    └── footprint.py        # Per-visit data, energy, CO₂e and water estimate
 ```
 
 ## Content management
@@ -275,7 +276,9 @@ Target: Lighthouse 100/100 on all pages.
 - HTML served from S3, optional CloudFront edge cache
 
 Per-page footprint (data, energy, CO₂e, water) is documented at
-https://openinnova.it/en/transparency/.
+https://openinnova.it/en/transparency/. The figures come from
+`python3 scripts/footprint.py`, which measures the live site and applies the
+Sustainable Web Design Model v4: re-run it after changes that affect page weight.
 
 ---
 
