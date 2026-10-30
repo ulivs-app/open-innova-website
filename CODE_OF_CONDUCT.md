@@ -46,7 +46,7 @@ and in public spaces when representing the project.
 ## Reporting Violations
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the
-project maintainers at **conduct@openinnova.it**.
+project maintainers at **info@openinnova.it**.
 
 All complaints will be reviewed and investigated promptly and fairly. All project team members
 are obligated to respect the privacy and security of the person reporting any incident.
@@ -72,4 +72,4 @@ available at https://www.contributor-covenant.org/version/2/1/code_of_conduct.ht
 
 ## Questions?
 
-If you have questions about this Code of Conduct, email: conduct@openinnova.it
+If you have questions about this Code of Conduct, email: info@openinnova.it

@@ -29,8 +29,8 @@ Paste this HTML into any Markdown page (`unsafe = true` is already set in `hugo.
       <label for="contact-topic">Tipo di richiesta</label>
       <select id="contact-topic" name="topic">
         <option value="info" data-recipient="info@openinnova.it" selected>Informazioni generali</option>
-        <option value="consulenza" data-recipient="business@openinnova.it">Consulenza</option>
-        <option value="prodotti" data-recipient="gestiscu@openinnova.it">Prodotti / demo</option>
+        <option value="consulenza" data-recipient="info@openinnova.it">Consulenza</option>
+        <option value="prodotti" data-recipient="info@openinnova.it">Prodotti / demo</option>
         <option value="dev" data-recipient="dev@openinnova.it">Software su misura</option>
         <option value="altro" data-recipient="info@openinnova.it">Altro</option>
       </select>
@@ -71,7 +71,7 @@ The handler also reads `document.documentElement.lang` and switches the email gr
 With the example above, submitting the form opens the user's mail client pre-filled like:
 
 ```
-To:      business@openinnova.it
+To:      info@openinnova.it
 Subject: [Consulenza] Richiesta da Mario Rossi — openinnova.it
 
 Buongiorno,

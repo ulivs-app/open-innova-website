@@ -43,7 +43,7 @@ Clients maintain direct contact with the development team. Maintenance and impro
 ## Contact
 
 Write to info@openinnova.it, even without a solution or specification in mind.
-GestiSCU: gestiscu@openinnova.it. Process consulting: business@openinnova.it. Custom software: dev@openinnova.it.
+GestiSCU and process consulting: info@openinnova.it. Custom software: dev@openinnova.it. Accessibility: accessibilita@openinnova.it.
 
 ## Website
 
