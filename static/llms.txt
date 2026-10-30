@@ -1,13 +1,15 @@
 # Open Innova
 
-> Software and ongoing support for Italian Civil Service organisations, third-sector organisations and businesses.
+> Open innovation, custom software and process consulting for businesses and third-sector organisations.
 
 Open Innova S.r.l. combines software development with knowledge of the third sector and organisational processes. Its purpose is to make technology useful and accessible in everyday work. The company was founded in 2026; the team's Civil Service software projects began in 2022.
 
-## Products
+## Approach and projects
 
-- GestiSCU: management software for the Italian Universal Civil Service, from selection to volunteer management. Used by organisational staff, local project supervisors (OLP) and volunteers. Activities include selections, attendance, documents, training and tutoring.
-- Custom management software: developed with organisations and businesses after studying workflows. Experience includes software for large football tournaments.
+Open Innova starts with listening and process analysis, builds solutions with their users and shares useful improvements across projects. Direct developer contact and ongoing care are central to its approach.
+
+- Custom management software: developed with organisations and businesses after studying workflows. Experience includes software for large football tournaments, which contributed to the BLADE technology base.
+- GestiSCU: an example of open innovation applied to the Italian Universal Civil Service. The Open Innova website tells the collaboration story; product marketing and features are at https://gestiscu.it. Used by organisational staff, local project supervisors (OLP) and volunteers, from selection to volunteer management.
 
 Clients purchase a licence to use the software. Open Innova retains the rights to the code and can reuse useful improvements across projects. Open innovation means collaboration and shared learning, not automatically open-source code or client ownership of source code. Client data and documents are not shared through this collaboration.
 
@@ -32,7 +34,7 @@ Clients maintain direct contact with the development team. Maintenance and impro
 - [Home IT](https://openinnova.it/) | [Home EN](https://openinnova.it/en/)
 - [About IT](https://openinnova.it/chi-siamo/) | [About EN](https://openinnova.it/en/about/)
 - [Products IT](https://openinnova.it/prodotti/) | [Products EN](https://openinnova.it/en/products/)
-- [GestiSCU IT](https://openinnova.it/gestiscu/) | [GestiSCU EN](https://openinnova.it/en/gestiscu/)
+- [GestiSCU project story IT](https://openinnova.it/gestiscu/) | [GestiSCU project story EN](https://openinnova.it/en/gestiscu/)
 - [Custom software IT](https://openinnova.it/software-su-misura/) | [Custom software EN](https://openinnova.it/en/custom-software/)
 - [Consulting IT](https://openinnova.it/consulenza/) | [Consulting EN](https://openinnova.it/en/consulting/)
 - [Open innovation IT](https://openinnova.it/open-innovation/) | [Open innovation EN](https://openinnova.it/en/open-innovation/)
