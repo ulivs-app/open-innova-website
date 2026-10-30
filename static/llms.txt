@@ -4,51 +4,41 @@
 
 Open Innova S.r.l. combines software development with knowledge of the third sector and organisational processes. Its purpose is to make technology useful and accessible in everyday work. The company was founded in 2026; the team's Civil Service software projects began in 2022.
 
-## Approach and projects
+**Approach.** Open Innova starts with listening and process analysis, builds solutions with their users and shares useful improvements across projects. Direct developer contact and ongoing care are central to its approach.
 
-Open Innova starts with listening and process analysis, builds solutions with their users and shares useful improvements across projects. Direct developer contact and ongoing care are central to its approach.
+**Projects.** Custom management software is developed with organisations and businesses after studying their workflows; experience includes software for large football tournaments, which contributed to the BLADE technology base. GestiSCU is an example of open innovation applied to the Italian Universal Civil Service: the Open Innova website tells the collaboration story, while product marketing and features are on gestiscu.it. It is used by organisational staff, local project supervisors (OLP) and volunteers, from selection to volunteer management.
 
-- Custom management software: developed with organisations and businesses after studying workflows. Experience includes software for large football tournaments, which contributed to the BLADE technology base.
-- GestiSCU: an example of open innovation applied to the Italian Universal Civil Service. The Open Innova website tells the collaboration story; product marketing and features are at https://gestiscu.it. Used by organisational staff, local project supervisors (OLP) and volunteers, from selection to volunteer management.
+**Licensing.** Clients purchase a licence to use the software. Open Innova retains the rights to the code and can reuse useful improvements across projects. Open innovation means collaboration and shared learning, not automatically open-source code or client ownership of source code. Client data and documents are not shared through this collaboration.
 
-Clients purchase a licence to use the software. Open Innova retains the rights to the code and can reuse useful improvements across projects. Open innovation means collaboration and shared learning, not automatically open-source code or client ownership of source code. Client data and documents are not shared through this collaboration.
+**Working process.** The team listens to clients, observes workflows and visits their premises when useful. It develops a proposal with the client and then prepares a quote. Initial meetings and the work needed to prepare the quote are free of charge. Software licensing may be accompanied by training, specific adaptations, assistance and operational support; for Civil Service organisations, support can include full management of agreed activities. Scope and terms are defined with each client. Clients keep direct contact with the development team, and maintenance and improvements to security, performance and resource efficiency continue over time.
 
-## Services and working process
+**Training.** Coaching and tutoring for volunteers can be commissioned by organisations separately from the software. Training also includes practical educational projects: an eight-day bootcamp took place in June 2026 with four vocational school students, as part of a project aimed at preventing early school leaving.
 
-The team listens to clients, observes workflows and visits their premises when useful. It develops a proposal with the client and then prepares a quote. Initial meetings and the work needed to prepare the quote are free of charge.
+**People.** Giovanni Rende, co-founder and sole director: third-sector, Civil Service and organisational experience. Daniele Nucciarelli, co-founder: software architecture and cloud infrastructure; personal site https://daniele.nucciarelli.it. Emanuele Persichini, co-founder and full-stack developer.
 
-Software licensing may be accompanied by training, specific adaptations, assistance and operational support. For Civil Service organisations, support can include full management of agreed activities. Scope and terms are defined with each client.
+**Contact.** Write to info@openinnova.it, even without a solution or specification in mind; it also covers GestiSCU and process consulting. Custom software: dev@openinnova.it. Accessibility: accessibilita@openinnova.it. Privacy: privacy@openinnova.it. Security reports: security@openinnova.it.
 
-Coaching and tutoring for volunteers can be commissioned by organisations separately from the software. Training also includes practical educational projects: an eight-day bootcamp took place in June 2026 with four vocational school students as part of a project aimed at preventing early school leaving.
+**Website.** Static Hugo website hosted on AWS S3 in Milan and distributed through CloudFront. No cookies, analytics, profiling tools or externally loaded fonts and libraries. It targets WCAG 2.2 level AA and is checked automatically before every release. Contact forms prepare a message in the visitor's email app; visitors send it from there. Website code is public under the repository's stated licences; brand assets, copy and company data remain protected. Environmental estimates are model-based, not measurements of individual visits.
 
-Clients maintain direct contact with the development team. Maintenance and improvements to security, performance and resource efficiency continue over time.
+The site is bilingual: Italian at the root, English under /en/. Links below point to the English pages; the Italian URL is given in each note.
 
-## People
+## Pages
 
-- Giovanni Rende: co-founder and sole director; third-sector, Civil Service and organisational experience.
-- Daniele Nucciarelli: co-founder; software architecture and cloud infrastructure.
-- Emanuele Persichini: co-founder and full-stack developer.
+- [Home](https://openinnova.it/en/): what Open Innova does and how to start. Italian: https://openinnova.it/
+- [About](https://openinnova.it/en/about/): story, values and the people behind Open Innova. Italian: https://openinnova.it/chi-siamo/
+- [Products](https://openinnova.it/en/products/): overview of GestiSCU and custom software. Italian: https://openinnova.it/prodotti/
+- [GestiSCU project story](https://openinnova.it/en/gestiscu/): how GestiSCU grew with Civil Service organisations. Italian: https://openinnova.it/gestiscu/
+- [Custom software](https://openinnova.it/en/custom-software/): how management software is designed with its users. Italian: https://openinnova.it/software-su-misura/
+- [Consulting](https://openinnova.it/en/consulting/): process analysis, training and ongoing support. Italian: https://openinnova.it/consulenza/
+- [Open innovation](https://openinnova.it/en/open-innovation/): the method, licensing and what is shared between projects. Italian: https://openinnova.it/open-innovation/
+- [Contact](https://openinnova.it/en/contact/): contact form, dedicated addresses and FAQ. Italian: https://openinnova.it/contatti/
 
-## Key pages
+## Products
 
-- [Home IT](https://openinnova.it/) | [Home EN](https://openinnova.it/en/)
-- [About IT](https://openinnova.it/chi-siamo/) | [About EN](https://openinnova.it/en/about/)
-- [Products IT](https://openinnova.it/prodotti/) | [Products EN](https://openinnova.it/en/products/)
-- [GestiSCU project story IT](https://openinnova.it/gestiscu/) | [GestiSCU project story EN](https://openinnova.it/en/gestiscu/)
-- [Custom software IT](https://openinnova.it/software-su-misura/) | [Custom software EN](https://openinnova.it/en/custom-software/)
-- [Consulting IT](https://openinnova.it/consulenza/) | [Consulting EN](https://openinnova.it/en/consulting/)
-- [Open innovation IT](https://openinnova.it/open-innovation/) | [Open innovation EN](https://openinnova.it/en/open-innovation/)
-- [Contact IT](https://openinnova.it/contatti/) | [Contact EN](https://openinnova.it/en/contact/)
-- [Privacy IT](https://openinnova.it/privacy/) | [Privacy EN](https://openinnova.it/en/privacy/)
-- [Transparency IT](https://openinnova.it/trasparenza/) | [Transparency EN](https://openinnova.it/en/transparency/)
+- [GestiSCU](https://gestiscu.it): product site of the management platform for the Italian Universal Civil Service
 
-## Contact
+## Optional
 
-Write to info@openinnova.it, even without a solution or specification in mind.
-GestiSCU and process consulting: info@openinnova.it. Custom software: dev@openinnova.it. Accessibility: accessibilita@openinnova.it.
-
-## Website
-
-Static Hugo website hosted on AWS S3 in Milan and distributed through CloudFront. No cookies, analytics, profiling tools or externally loaded fonts and libraries. Contact forms prepare a message in the visitor's email app; visitors send it from there. Technical infrastructure data and email enquiries are described in the privacy notice.
-
-Website code is public under the repository's stated licences. Brand assets, copy and company data remain protected. Environmental estimates are model-based, not measurements of individual visits.
+- [Privacy notice](https://openinnova.it/en/privacy/): browsing data and email enquiries. Italian: https://openinnova.it/privacy/
+- [Transparency](https://openinnova.it/en/transparency/): how the site is built, data transferred, estimated energy, CO₂e and water. Italian: https://openinnova.it/trasparenza/
+- [Website source code](https://github.com/ulivs-app/open-innova-website): Hugo templates, styles and the accessibility and footprint scripts
