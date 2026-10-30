@@ -1,5 +1,5 @@
 {{- if .Params.hero }}
-<section class="hero" role="region" aria-label="Hero Section">
+<section class="hero" role="region" aria-label="{{ if eq .Language.Lang "it" }}Presentazione{{ else }}Introduction{{ end }}">
   <div class="hero-container">
     {{- with .Params.hero.title }}
     <h1 class="hero-title">{{ . }}</h1>
@@ -19,10 +19,8 @@
       {{- if $isWip }}
       <span
         class="btn {{ .style | default "btn-primary" }} is-disabled"
-        role="link"
-        aria-disabled="true"
         title="{{ if eq $lang "it" }}Pagina in costruzione{{ else }}Page work in progress{{ end }}"
-      >{{ .text }}</span>
+      >{{ .text }}<span class="sr-only"> ({{ if eq $lang "it" }}pagina in costruzione{{ else }}page work in progress{{ end }})</span></span>
       {{- else }}
       <a href="{{ .url }}" class="btn {{ .style | default "btn-primary" }}">{{ .text }}</a>
       {{- end }}

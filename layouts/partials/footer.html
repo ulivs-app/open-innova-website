@@ -1,19 +1,21 @@
 {{- $company := hugo.Data.company -}}
 
-<footer class="footer">
+<div class="footer">
   <div class="container footer-container">
     <div class="footer-section">
-      <h3>{{ $company.name }}</h3>
-      <p>{{ $company.tagline }}</p>
+      {{- /* Full logo, decorative: the name follows as text */}}
+      <div class="footer-logo" aria-hidden="true">{{ readFile "assets/images/logo.svg" | safeHTML }}</div>
+      <h2 class="footer-title">{{ $company.name }}</h2>
+      <p>{{ if eq .Language.Lang "en" }}{{ $company.taglineEn | default $company.tagline }}{{ else }}{{ $company.tagline }}{{ end }}</p>
       <div class="footer-contact">
         <p><strong>Email:</strong> <a href="mailto:{{ $company.contact.email.info }}">{{ $company.contact.email.info }}</a></p>
-        <p><strong>Address:</strong> {{ $company.registeredOffice.street }}, {{ $company.registeredOffice.postalCode }} {{ $company.registeredOffice.city }} ({{ $company.registeredOffice.province }}) - {{ $company.registeredOffice.country }}</p>
+        <p><strong>{{ if eq .Language.Lang "it" }}Indirizzo:{{ else }}Address:{{ end }}</strong> {{ $company.registeredOffice.street }}, {{ $company.registeredOffice.postalCode }} {{ $company.registeredOffice.city }} ({{ $company.registeredOffice.province }}) - {{ if eq .Language.Lang "it" }}Italia{{ else }}{{ $company.registeredOffice.country }}{{ end }}</p>
       </div>
     </div>
 
     {{- /* Quick Links */ -}}
     <div class="footer-section">
-      <h4>{{ if eq .Language.Lang "it" }}Link Veloci{{ else }}Quick Links{{ end }}</h4>
+      <h3 class="footer-heading">{{ if eq .Language.Lang "it" }}Link Veloci{{ else }}Quick Links{{ end }}</h3>
       <ul>
         {{- range .Site.Menus.main }}
         <li><a href="{{ .URL }}">{{ .Name }}</a></li>
@@ -24,7 +26,7 @@
     {{- /* Social Media */ -}}
     {{- if $company.socialMedia }}
     <div class="footer-section">
-      <h4>{{ if eq .Language.Lang "it" }}Seguici{{ else }}Follow Us{{ end }}</h4>
+      <h3 class="footer-heading">{{ if eq .Language.Lang "it" }}Seguici{{ else }}Follow Us{{ end }}</h3>
       <ul class="social-links">
         {{- with $company.socialMedia.linkedin }}
         <li><a href="{{ . }}" rel="external nofollow" aria-label="LinkedIn">LinkedIn</a></li>
@@ -38,10 +40,14 @@
 
     {{- /* Legal */ -}}
     <div class="footer-section">
-      <h4>{{ if eq .Language.Lang "it" }}Legale{{ else }}Legal{{ end }}</h4>
+      <h3 class="footer-heading">{{ if eq .Language.Lang "it" }}Legale{{ else }}Legal{{ end }}</h3>
       <ul>
-        <li><a href="{{ .Site.BaseURL }}{{ if eq .Language.Lang "en" }}en/{{ end }}privacy/">{{ if eq .Language.Lang "it" }}Privacy{{ else }}Privacy Policy{{ end }}</a></li>
-        <li><a href="{{ .Site.BaseURL }}{{ if eq .Language.Lang "en" }}en/transparency/{{ else }}trasparenza/{{ end }}">{{ if eq .Language.Lang "it" }}Trasparenza{{ else }}Transparency{{ end }}</a></li>
+        <li><a href="/{{ if eq .Language.Lang "en" }}en/{{ end }}privacy/">{{ if eq .Language.Lang "it" }}Privacy{{ else }}Privacy Policy{{ end }}</a></li>
+        <li><a href="/{{ if eq .Language.Lang "en" }}en/transparency/{{ else }}trasparenza/{{ end }}">{{ if eq .Language.Lang "it" }}Trasparenza{{ else }}Transparency{{ end }}</a></li>
+        {{- /* Shown only once the statement is published (draft: false) */}}
+        {{- with .Site.GetPage (cond (eq .Language.Lang "it") "/accessibilita" "/accessibility") }}
+        <li><a href="{{ .RelPermalink }}">{{ if eq .Language.Lang "it" }}Accessibilità{{ else }}Accessibility{{ end }}</a></li>
+        {{- end }}
       </ul>
     </div>
   </div>
@@ -54,8 +60,25 @@
     {{- if $company.vatId }}
     <p class="footer-legal-info">
       {{ if eq .Language.Lang "it" }}Partita IVA: <code>{{ $company.vatId }}</code>{{ else }}VAT ID: <code>{{ $company.vatId }}</code>{{ end }}
+      {{- /* Company register details required on the website by art. 2250 c.c.;
+           each part is shown only once its field exists in data/company.json */}}
+      {{- with $company.registerOffice }} | {{ if eq $.Language.Lang "it" }}Registro Imprese {{ . }} n.{{ else }}{{ . }} Companies Register no.{{ end }} <code>{{ $company.fiscalCode }}</code>{{ end }}
       {{- if $company.rea }} | REA: <code>{{ $company.rea }}</code>{{ end }}
+      {{- with $company.shareCapital }} | {{ if eq $.Language.Lang "it" }}Capitale sociale {{ . }} i.v.{{ else }}Share capital {{ . }} fully paid{{ end }}{{ end }}
+      {{- if $company.soleShareholder }} | {{ if eq .Language.Lang "it" }}Socio unico{{ else }}Single shareholder{{ end }}{{ end }}
     </p>
     {{- end }}
+    {{- /* Opens the cookie dialog in baseof.html; always reachable, also when the
+         floating badge is hidden */}}
+    <button type="button" class="cookie-link" aria-haspopup="dialog" aria-controls="cookie-modal" data-open-cookie-modal>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2a10 10 0 1 0 10 10c-2 0-3-1-3-3s-1-3-3-3-3-1-3-3-1-1-1-1Z"/>
+        <circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/>
+        <circle cx="13.5" cy="14" r="1.1" fill="currentColor" stroke="none"/>
+        <circle cx="8" cy="15.5" r="1.1" fill="currentColor" stroke="none"/>
+        <line x1="4" y1="20" x2="20" y2="4"/>
+      </svg>
+      {{ if eq .Language.Lang "it" }}Niente cookie su questo sito{{ else }}This site uses no cookies{{ end }}
+    </button>
   </div>
-</footer>
+</div>

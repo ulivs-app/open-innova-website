@@ -17,7 +17,11 @@
   {{- range .AllTranslations }}
   <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />
   {{- end }}
+  {{- range .AllTranslations }}
+  {{- if eq .Language.Lang "it" }}
   <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+  {{- end }}
+  {{- end }}
 {{- end }}
 
 {{- /* Open Graph Tags */ -}}
@@ -47,11 +51,11 @@
 <meta name="googlebot" content="index, follow">
 
 {{- /* Sitemap */ -}}
-<link rel="sitemap" type="application/xml" href="{{ .Site.BaseURL }}sitemap.xml">
+<link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}">
 
 {{- /* RSS Feed */ -}}
 {{- if or (eq .Kind "home") (eq .Kind "section") }}
-<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}index.xml">
+<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ with .OutputFormats.Get "RSS" }}{{ .Permalink }}{{ end }}">
 {{- end }}
 
 {{- /* Stylesheets — minified + fingerprinted + SRI in production only */ -}}
@@ -63,11 +67,11 @@
   {{- with $style.Data.Integrity }} integrity="{{ . }}" crossorigin="anonymous"{{ end }}>
 
 {{- /* Favicon */ -}}
-<link rel="icon" type="image/svg+xml" href="{{ .Site.BaseURL }}favicon.svg">
+<link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | absURL }}">
 
 {{- /* Security & Compliance Headers (if served properly) */ -}}
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
 
 {{- /* AI Agent / LLM Support */ -}}
-<link rel="alternate" type="text/plain" href="{{ .Site.BaseURL }}llms.txt" title="For AI Agents">
+<link rel="alternate" type="text/plain" href="{{ "llms.txt" | absURL }}" title="For AI Agents">

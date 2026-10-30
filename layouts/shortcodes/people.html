@@ -1,0 +1,33 @@
+{{- /* Carousel of people. Usage in Markdown, right after the section heading:
+
+     {{% people labelledby="le-persone" %}}
+     ### Name
+     **Role**
+     Text…
+     ### Next name
+     …
+     {{% /people %}}
+
+   Every "### " block becomes a slide; dots, arrows and "1 of N" follow the
+   number of people. Uses {{% %}} so the headings stay in the page outline and
+   in the table of contents. Without JavaScript it is a horizontal scroller
+   with snap points; scripts.js shows the controls. Never auto-advances. */ -}}
+{{- $it := eq .Page.Language.Lang "it" -}}
+{{- $parts := split (printf "\n%s" (trim .Inner "\n")) "\n### " -}}
+{{- $people := after 1 $parts -}}
+{{- $n := len $people }}
+<section class="people" aria-roledescription="{{ cond $it "carosello" "carousel" }}"{{ with .Get "labelledby" }} aria-labelledby="{{ . }}"{{ end }}>
+<div class="people-track">
+{{ range $i, $p := $people }}
+<div class="people-slide" role="group" aria-roledescription="{{ cond $it "persona" "person" }}" aria-label="{{ add $i 1 }} {{ cond $it "di" "of" }} {{ $n }}">
+
+### {{ $p }}
+
+</div>
+{{ end }}
+</div>
+<div class="people-controls" hidden>
+<div class="people-dots">{{ range $i, $p := $people }}<button type="button" class="people-dot" data-slide="{{ $i }}" aria-label="{{ index (split $p "\n") 0 | strings.TrimSpace }}"></button>{{ end }}</div>
+<div class="people-arrows"><button type="button" class="people-arrow" data-dir="-1" aria-label="{{ cond $it "Persona precedente" "Previous person" }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button><button type="button" class="people-arrow" data-dir="1" aria-label="{{ cond $it "Persona successiva" "Next person" }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div>
+</section>

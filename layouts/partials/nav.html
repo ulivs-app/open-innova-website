@@ -1,26 +1,24 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar" role="navigation" aria-label="{{ if eq .Language.Lang "it" }}Navigazione principale{{ else }}Main navigation{{ end }}">
   <div class="container navbar-container">
     <!-- Logo -->
-    <a href="{{ .Site.BaseURL }}" class="navbar-logo" aria-label="{{ .Site.Title }} Home">
-      {{ readFile "assets/images/logo.svg" | safeHTML }}
+    <a href="{{ .Site.Home.RelPermalink }}" class="navbar-logo" aria-label="{{ .Site.Title }}, {{ if eq .Language.Lang "it" }}pagina iniziale{{ else }}home page{{ end }}">
+      {{ partial "logo-lockup.html" . }}
     </a>
 
     <!-- Main Menu -->
-    <ul class="navbar-menu" role="menubar">
+    <ul class="navbar-menu">
       {{- range .Site.Menus.main }}
       {{- $isCurrent := eq .URL $.RelPermalink }}
       {{- $isInternal := hasPrefix .URL "/" }}
       {{- $target := index (where site.RegularPages "RelPermalink" .URL) 0 }}
       {{- $isWip := and $isInternal (not $target) }}
-      <li role="none">
+      <li>
         {{- if $isWip }}
         <span
           class="navbar-link is-disabled"
-          role="link"
-          aria-disabled="true"
           title="{{ if eq $.Language.Lang "it" }}Pagina in costruzione{{ else }}Page work in progress{{ end }}"
         >
-          {{ .Name }}
+          {{ .Name }}<span class="sr-only"> ({{ if eq $.Language.Lang "it" }}pagina in costruzione{{ else }}page work in progress{{ end }})</span>
         </span>
         {{- else }}
         <a
@@ -38,16 +36,17 @@
     <!-- Language Switcher -->
     {{- if .IsTranslated }}
     <div class="navbar-languages">
-      <div class="lang-switcher" role="group" aria-label="Language Selection">
+      <div class="lang-switcher" role="group" aria-label="{{ if eq .Language.Lang "it" }}Selezione lingua{{ else }}Language selection{{ end }}">
         {{- range .AllTranslations }}
         {{- $isCurrentLang := eq .Language.Lang $.Page.Language.Lang }}
         <a
-          href="{{ .Permalink }}"
+          href="{{ .RelPermalink }}"
           class="lang-link{{ if $isCurrentLang }} active{{ end }}"
           {{- if $isCurrentLang }} aria-current="true"{{ end }}
           lang="{{ .Language.Lang }}"
+          hreflang="{{ .Language.Lang }}"
         >
-          {{ .Language.Label | upper }}
+          {{ .Language.Label }}
         </a>
         {{- end }}
       </div>
@@ -67,8 +66,8 @@
   <!-- Mobile full-screen menu (opened by hamburger) -->
   <dialog id="nav-menu" class="nav-menu" aria-label="{{ if eq .Language.Lang "it" }}Menu di navigazione{{ else }}Navigation menu{{ end }}">
     <div class="nav-menu__header">
-      <a href="{{ .Site.BaseURL }}" class="nav-menu__logo" aria-label="{{ .Site.Title }} Home" data-close-nav-menu>
-        {{ readFile "assets/images/logo.svg" | safeHTML }}
+      <a href="{{ .Site.Home.RelPermalink }}" class="nav-menu__logo" aria-label="{{ .Site.Title }}, {{ if eq .Language.Lang "it" }}pagina iniziale{{ else }}home page{{ end }}" data-close-nav-menu>
+        {{ partial "logo-lockup.html" . }}
       </a>
       <button type="button" class="nav-menu__close" aria-label="{{ if eq .Language.Lang "it" }}Chiudi menu{{ else }}Close menu{{ end }}" data-close-nav-menu>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
@@ -78,21 +77,19 @@
       </button>
     </div>
 
-    <ul class="nav-menu__list" role="menu">
+    <ul class="nav-menu__list">
       {{- range .Site.Menus.main }}
       {{- $isCurrent := eq .URL $.RelPermalink }}
       {{- $isInternal := hasPrefix .URL "/" }}
       {{- $target := index (where site.RegularPages "RelPermalink" .URL) 0 }}
       {{- $isWip := and $isInternal (not $target) }}
-      <li role="none">
+      <li>
         {{- if $isWip }}
         <span
           class="nav-menu__link is-disabled"
-          role="link"
-          aria-disabled="true"
           title="{{ if eq $.Language.Lang "it" }}Pagina in costruzione{{ else }}Page work in progress{{ end }}"
         >
-          {{ .Name }}
+          {{ .Name }}<span class="sr-only"> ({{ if eq $.Language.Lang "it" }}pagina in costruzione{{ else }}page work in progress{{ end }})</span>
         </span>
         {{- else }}
         <a
@@ -113,12 +110,13 @@
       {{- range .AllTranslations }}
       {{- $isCurrentLang := eq .Language.Lang $.Page.Language.Lang }}
       <a
-        href="{{ .Permalink }}"
+        href="{{ .RelPermalink }}"
         class="nav-menu__lang-link{{ if $isCurrentLang }} active{{ end }}"
         {{- if $isCurrentLang }} aria-current="true"{{ end }}
         lang="{{ .Language.Lang }}"
+        hreflang="{{ .Language.Lang }}"
       >
-        {{ .Language.Label | upper }}
+        {{ .Language.Label }}
       </a>
       {{- end }}
     </div>

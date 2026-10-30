@@ -4,11 +4,13 @@
   {{- partial "head.html" . -}}
 </head>
 <body>
+  <a class="skip-link" href="#main-content">{{ if eq .Language.Lang "it" }}Vai al contenuto{{ else }}Skip to content{{ end }}</a>
+
   <header role="banner">
     {{- partial "nav.html" . -}}
   </header>
 
-  <main id="main-content" role="main">
+  <main id="main-content" role="main" tabindex="-1">
     {{- block "main" . }}{{- end }}
   </main>
 
@@ -22,7 +24,10 @@
     </svg>
   </button>
 
-  <button type="button" class="cookie-badge" aria-label="{{ if eq .Language.Lang "it" }}Niente cookie su questo sito{{ else }}This site uses no cookies{{ end }}" data-open-cookie-modal>
+  {{- /* Floating shortcut to the same dialog: scripts.js hides it while it could
+       cover the text (scrolling down on narrow screens) and when the footer,
+       which has the same button, is in view */}}
+  <button type="button" class="cookie-badge" aria-label="{{ if eq .Language.Lang "it" }}Niente cookie su questo sito{{ else }}This site uses no cookies{{ end }}" aria-haspopup="dialog" aria-controls="cookie-modal" data-open-cookie-modal>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M12 2a10 10 0 1 0 10 10c-2 0-3-1-3-3s-1-3-3-3-3-1-3-3-1-1-1-1Z"/>
       <circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/>
@@ -55,9 +60,9 @@
     </p>
     <p class="cookie-modal__body">
       {{- if eq .Language.Lang "it" -}}
-      Vuoi i <a href="{{ .Site.BaseURL }}trasparenza/">dettagli tecnici</a>? Spieghiamo come è fatto il sito e cosa abbiamo deciso di non usare. Per la versione formale, leggi la <a href="{{ .Site.BaseURL }}privacy/">privacy policy</a>.
+      Vuoi i <a href="/trasparenza/">dettagli tecnici</a>? Spieghiamo come è fatto il sito e cosa abbiamo deciso di non usare. Per la versione formale, leggi la <a href="/privacy/">privacy policy</a>.
       {{- else -}}
-      Want the <a href="{{ .Site.BaseURL }}en/transparency/">technical details</a>? We explain how the site is built and what we chose not to use. For the formal version, read our <a href="{{ .Site.BaseURL }}en/privacy/">privacy policy</a>.
+      Want the <a href="/en/transparency/">technical details</a>? We explain how the site is built and what we chose not to use. For the formal version, read our <a href="/en/privacy/">privacy policy</a>.
       {{- end -}}
     </p>
   </dialog>
@@ -80,7 +85,7 @@
     "name": "{{ $company.name }}",
     "url": "{{ .Site.BaseURL }}",
     "logo": "{{ $logo.Permalink }}",
-    "description": "{{ $company.description }}",
+    "description": "{{ if eq .Language.Lang "en" }}{{ $company.descriptionEn | default $company.description }}{{ else }}{{ $company.description }}{{ end }}",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "{{ $company.registeredOffice.street }}",

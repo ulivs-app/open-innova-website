@@ -1,0 +1,6 @@
+{{- /* Header lockup: symbol + wordmark, legible at small sizes. The full logo
+     (wordmark inside the ring) is used in the footer and in the structured data. */ -}}
+<span class="logo-lockup">
+  {{- readFile "assets/images/logo-symbol.svg" | safeHTML -}}
+  {{- readFile "assets/images/logo-wordmark.svg" | safeHTML -}}
+</span>

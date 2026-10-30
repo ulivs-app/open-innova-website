@@ -1,23 +1,30 @@
 {{- define "main" -}}
 <article class="page-content">
-  <div class="container">
-    {{- with .Title }}
-    <h1 class="page-title">{{ . }}</h1>
-    {{- end }}
+  <div class="container page-layout">
+    <div class="page-header">
+      {{- with .Title }}
+      <h1 class="page-title">{{ . }}</h1>
+      {{- end }}
 
-    {{- if .Params.subtitle }}
-    <p class="page-subtitle">{{ .Params.subtitle }}</p>
+      {{- if .Params.subtitle }}
+      <p class="page-subtitle">{{ .Params.subtitle }}</p>
+      {{- end }}
+    </div>
+
+    {{- $showToc := and (ne .Params.toc false) .TableOfContents -}}
+    {{- if $showToc }}
+    {{- /* One labelled nav landmark: Hugo's own <nav id="TableOfContents"> becomes a div.
+         Closed in the HTML so nothing shifts on small screens; scripts.js opens it
+         beside the text on wide screens. */}}
+    <nav class="toc" aria-labelledby="toc-title">
+      <details class="toc-details">
+        <summary class="toc-title"><span id="toc-title">{{ if eq .Language.Lang "it" }}In questa pagina{{ else }}On this page{{ end }}</span></summary>
+        {{ .TableOfContents | replaceRE `<nav id="TableOfContents">` `<div id="TableOfContents">` | replaceRE `</nav>` `</div>` | safeHTML }}
+      </details>
+    </nav>
     {{- end }}
 
     <div class="page-body">
-      {{- $showToc := and (ne .Params.toc false) .TableOfContents -}}
-      {{- if $showToc }}
-      <aside class="toc" aria-label="{{ if eq .Language.Lang "it" }}Indice della pagina{{ else }}Page table of contents{{ end }}">
-        <p class="toc-title">{{ if eq .Language.Lang "it" }}In questa pagina{{ else }}On this page{{ end }}</p>
-        {{ .TableOfContents }}
-      </aside>
-      {{- end }}
-
       {{- .Content }}
     </div>
 

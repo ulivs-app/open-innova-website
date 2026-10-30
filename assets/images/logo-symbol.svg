@@ -1,0 +1,69 @@
+<svg class="logo-symbol" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 283.41 283.46">
+  <defs>
+    <style>
+      .logo-symbol-1 {
+        fill: none;
+      }
+
+      .logo-symbol-2 {
+        fill: url(#logo-symbol-gradient);
+      }
+
+      .logo-symbol-3 {
+        clip-path: url(#logo-symbol-clip-1);
+      }
+
+      .logo-symbol-4 {
+        fill: url(#logo-symbol-gradient-2);
+      }
+
+      .logo-symbol-5 {
+        fill: #fff;
+      }
+
+      .logo-symbol-6 {
+        clip-path: url(#logo-symbol-clip);
+      }
+
+      .logo-symbol-7 {
+        fill: #19213c;
+      }
+    </style>
+    <clipPath id="logo-symbol-clip">
+      <rect class="logo-symbol-1" width="283.41" height="283.46" rx="22.48" ry="22.48"/>
+    </clipPath>
+    <clipPath id="logo-symbol-clip-1">
+      <rect class="logo-symbol-1" x="-12.2" y="-12.17" width="307.81" height="307.81"/>
+    </clipPath>
+    <linearGradient id="logo-symbol-gradient" x1="237.63" y1="-12.17" x2="-961.03" y2="-12.17" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#64ba84"/>
+      <stop offset="0" stop-color="#64ba84" stop-opacity=".99"/>
+      <stop offset=".08" stop-color="#64ba84" stop-opacity=".76"/>
+      <stop offset=".17" stop-color="#64ba84" stop-opacity=".56"/>
+      <stop offset=".26" stop-color="#64ba84" stop-opacity=".39"/>
+      <stop offset=".36" stop-color="#64ba84" stop-opacity=".24"/>
+      <stop offset=".47" stop-color="#64ba84" stop-opacity=".14"/>
+      <stop offset=".6" stop-color="#64ba84" stop-opacity=".06"/>
+      <stop offset=".75" stop-color="#64ba84" stop-opacity=".01"/>
+      <stop offset="1" stop-color="#64ba84" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="logo-symbol-gradient-2" x1="452.68" y1="1191.83" x2="-745.99" y2="1191.83" gradientTransform="translate(498.45 1487.47) rotate(-180)" xlink:href="#logo-symbol-gradient"/>
+  </defs>
+  <g>
+    <g class="logo-symbol-6">
+      <rect class="logo-symbol-7" width="283.41" height="283.46"/>
+      <g class="logo-symbol-3">
+        <g>
+          <g>
+            <path class="logo-symbol-2" d="M-895.99,248.24l-65.04-12.23c55.44-294.7,313.53-508.6,613.73-508.6,258.95,0,494.02,162.93,584.93,405.42l-61.96,23.24C94.38-60.75-115.78-206.41-347.3-206.41c-268.39,0-499.15,191.21-548.69,454.65Z"/>
+            <circle class="logo-symbol-5" cx="205.69" cy="141.82" r="33.39"/>
+          </g>
+          <g>
+            <path class="logo-symbol-4" d="M1179.4,35.23l65.04,12.23c-55.44,294.7-313.53,508.6-613.73,508.6-258.95,0-494.02-162.93-584.93-405.42l61.96-23.24c81.29,216.82,291.45,362.48,522.97,362.48,268.39,0,499.15-191.21,548.69-454.65Z"/>
+            <circle class="logo-symbol-5" cx="77.79" cy="141.65" r="33.31"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

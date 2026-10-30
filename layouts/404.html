@@ -6,17 +6,17 @@
       <h1>404 — Pagina non trovata</h1>
       <p>La pagina che cercavi non esiste, o è stata spostata.</p>
       <p>
-        <a href="{{ .Site.BaseURL }}">Torna alla home</a>
+        <a href="{{ .Site.Home.RelPermalink }}">Torna alla home</a>
         &nbsp;·&nbsp;
-        <a href="{{ .Site.BaseURL }}contatti/">Contattaci</a>
+        <a href="/contatti/">Contattaci</a>
       </p>
       {{- else -}}
       <h1>404 — Page not found</h1>
       <p>The page you were looking for doesn't exist, or has moved.</p>
       <p>
-        <a href="{{ .Site.BaseURL }}">Back to home</a>
+        <a href="{{ .Site.Home.RelPermalink }}">Back to home</a>
         &nbsp;·&nbsp;
-        <a href="{{ .Site.BaseURL }}en/contact/">Contact us</a>
+        <a href="/en/contact/">Contact us</a>
       </p>
       {{- end -}}
     </div>
