@@ -37,7 +37,7 @@ weight = 1
 [[languages.it.menu.main]]
 name = "Prodotti"
 url = "/prodotti/"
-weight = 2
+weight = 4
 
 [[languages.it.menu.main]]
 name = "Consulenza"
@@ -47,7 +47,7 @@ weight = 3
 [[languages.it.menu.main]]
 name = "Open Innovation"
 url = "/open-innovation/"
-weight = 4
+weight = 2
 
 [[languages.it.menu.main]]
 name = "Contatti"
@@ -68,7 +68,7 @@ weight = 1
 [[languages.en.menu.main]]
 name = "Products"
 url = "/en/products/"
-weight = 2
+weight = 4
 
 [[languages.en.menu.main]]
 name = "Consulting"
@@ -78,7 +78,7 @@ weight = 3
 [[languages.en.menu.main]]
 name = "Open Innovation"
 url = "/en/open-innovation/"
-weight = 4
+weight = 2
 
 [[languages.en.menu.main]]
 name = "Contact"
