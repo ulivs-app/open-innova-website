@@ -289,10 +289,38 @@ Target: Lighthouse 100/100 on all pages.
 - No external resources, no CDN-hosted libraries
 - HTML served from S3, optional CloudFront edge cache
 
-Per-page footprint (data, energy, CO₂e, water) is documented at
-https://openinnova.it/en/transparency/. The figures come from
-`python3 scripts/footprint.py`, which measures the live site and applies the
-Sustainable Web Design Model v4: re-run it after changes that affect page weight.
+The footprint methodology is described at https://openinnova.it/en/transparency/.
+`python3 scripts/footprint.py` measures a served version and applies the
+Sustainable Web Design Model v4. Record the date, URL, version and cache/compression
+conditions with each run; local preview figures are not production measurements.
+Re-run it after changes that affect page weight before publishing numerical claims.
+
+### Environmental narrative and charts
+
+The Italian and English transparency pages share `data/footprint.json`. Update
+that snapshot from an identified published release:
+
+```bash
+python3 scripts/footprint.py --base-url https://openinnova.it \
+  --version-label RELEASE --json-output data/footprint.json
+python3 -m unittest discover -s scripts -p test_footprint.py
+hugo
+```
+
+Replace `RELEASE` with the release identifier or date. Review the exported URL,
+date, page count, assumptions and page hashes before publishing. The current
+snapshot describes the live site measured on 30 October 2026, before the editorial
+rewrite. It deliberately does not claim to measure the page displaying it.
+After publishing a new version, measure that version and review a new snapshot;
+a local preview must never overwrite production data under a production label.
+
+The `footprint` shortcode renders numbers, cache and model-share charts from this
+single dataset. It also exports a downloadable, fingerprinted JSON resource so
+updated data cannot be hidden by the long-lived asset cache. The local CSS and
+small selector script load only on pages using the shortcode. Without JavaScript,
+all charts and the one-million-load scenario remain readable. No visitor counts
+or tracking are collected. Water figures represent cooling scenarios only, not
+a complete water footprint.
 
 ---
 

@@ -1,0 +1,52 @@
+/* Local charts: values and accessible text are generated from the same dataset.
+   Marks use the logo motif: a green stroke (the ring colour) that fades to
+   nothing towards the start and ends in a navy dot as wide as the stroke,
+   like the two ends of the ring. */
+:root { --impact-stroke: 8px; --impact-dot: var(--impact-stroke); --color-brand-green: #64ba84; }
+.impact-note { border-left: 3px solid var(--color-secondary); padding: var(--space-sm) var(--space-lg); background: var(--color-surface-light); }
+.impact-note p { margin: var(--space-sm) 0; }
+.impact-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-lg); padding: var(--space-lg) 0; border-bottom: 1px solid var(--color-border); }
+.impact-metrics dt { color: var(--color-text-light); font-size: var(--font-size-sm); }
+.impact-metrics dd { margin: var(--space-sm) 0 0; color: var(--color-heading); font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); }
+.impact-chart { margin: var(--space-xl) 0; }
+.impact-chart figcaption { font-weight: var(--font-weight-semibold); margin-bottom: var(--space-lg); }
+.impact-row { margin-bottom: var(--space-lg); }
+.impact-label { display: flex; justify-content: space-between; gap: var(--space-md); margin-bottom: var(--space-sm); }
+.impact-label strong { white-space: nowrap; }
+/* Track and value share the same scale, from zero; the dot marks the value */
+.impact-track { width: calc(100% - var(--impact-dot) / 2); height: var(--impact-stroke); margin-block: calc((var(--impact-dot) - var(--impact-stroke)) / 2 + 2px); /* full scale as a 1px hairline, so the stroke can fade to nothing as in the logo */ background: linear-gradient(var(--color-border), var(--color-border)) center / 100% 1px no-repeat; }
+.impact-fill { position: relative; display: block; height: 100%; border-radius: var(--radius-full); background: linear-gradient(90deg, transparent, var(--color-brand-green)); }
+.impact-fill::after { content: ""; position: absolute; right: 0; top: 50%; width: var(--impact-dot); height: var(--impact-dot); border-radius: 50%; background: var(--color-heading); transform: translate(50%, -50%); }
+.impact-caption { font-size: var(--font-size-sm); color: var(--color-text-light); }
+.impact-growth { margin-block: var(--space-xl); padding-block: var(--space-lg); border-block: 1px solid var(--color-border); }
+.impact-growth-kicker { color: var(--color-text-light); font-size: var(--font-size-sm); }
+.impact-growth-panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xl); }
+.impact-growth-panel { margin: 0; min-width: 0; }
+.impact-growth-panel figcaption { font-weight: var(--font-weight-semibold); margin-bottom: var(--space-xl); }
+.impact-growth-panel figcaption span { display: block; color: var(--color-text-light); font-size: var(--font-size-sm); font-weight: normal; }
+.impact-growth-axes { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-md); padding-right: var(--space-sm); font-size: var(--font-size-sm); font-variant-numeric: tabular-nums; }
+.impact-growth-y { display: flex; flex-direction: column; justify-content: space-between; text-align: right; height: 220px; color: var(--color-text-light); }
+.impact-growth-y span:first-child { transform: translateY(-50%); }
+.impact-growth-y span:last-child { transform: translateY(50%); }
+.impact-growth-plot { position: relative; height: 220px; }
+.impact-growth-plot svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.impact-growth-grid { stroke: var(--color-border); stroke-width: 1; vector-effect: non-scaling-stroke; fill: none; }
+/* Corner-to-corner line in CSS: an SVG gradient on a non-scaling stroke is not
+   drawn by Safari. "to top left" puts the 50% band exactly on the diagonal from
+   bottom left to top right; the mask fades it to nothing towards the start. */
+.impact-growth-plot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top left, transparent calc(50% - var(--impact-stroke) / 2 - 0.5px), var(--color-brand-green) calc(50% - var(--impact-stroke) / 2 + 0.5px), var(--color-brand-green) calc(50% + var(--impact-stroke) / 2 - 0.5px), transparent calc(50% + var(--impact-stroke) / 2 + 0.5px)); -webkit-mask-image: linear-gradient(to top right, transparent, #000); mask-image: linear-gradient(to top right, transparent, #000); }
+.impact-growth-dot { position: absolute; z-index: 1; width: var(--impact-dot); height: var(--impact-dot); border-radius: 50%; background: var(--color-heading); transform: translate(-50%, -50%); }
+.impact-growth-dot-start { left: 0; top: 100%; }
+.impact-growth-dot-middle { left: 50%; top: 50%; }
+.impact-growth-dot-end { left: 100%; top: 0; }
+.impact-growth-x { grid-column: 2; display: flex; justify-content: space-between; margin-top: var(--space-md); color: var(--color-text-light); }
+.impact-growth-x span { flex: 1; text-align: center; }
+.impact-growth-x span:first-child { text-align: left; }
+.impact-growth-x span:last-child { text-align: right; }
+.impact-growth-axis-label { text-align: center; font-size: var(--font-size-sm); color: var(--color-text-light); }
+.impact-growth-values { margin-block: var(--space-lg); }
+.impact-growth-values summary { cursor: pointer; color: var(--color-link); }
+.impact-growth-values table { width: 100%; font-size: var(--font-size-sm); font-variant-numeric: tabular-nums; }
+.impact-growth-values caption { text-align: left; margin-block: var(--space-md); }
+@media (max-width: 700px) { .impact-growth-panels { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .impact-metrics { grid-template-columns: 1fr; } .impact-label { align-items: baseline; } }

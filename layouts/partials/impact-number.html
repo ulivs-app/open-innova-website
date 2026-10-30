@@ -1,0 +1,3 @@
+{{- $value := printf "%.*f" (int .digits) (float .value) -}}
+{{- if eq .lang "it" -}}{{- $value = replace $value "." "," -}}{{- end -}}
+{{- return $value -}}

@@ -1,0 +1,92 @@
+{{- $d := hugo.Data.footprint -}}
+{{- $it := eq .Page.Language.Lang "it" -}}
+{{- $lang := .Page.Language.Lang -}}
+{{- $part := .Get 0 -}}
+{{- $water := index $d.water 0 -}}
+{{- $aws := index $d.water 1 -}}
+{{- $fmt := dict "lang" $lang "digits" 1 -}}
+{{- if eq $part "summary" -}}
+<div class="impact-note">
+  <p><strong>{{ if $it }}Rilevazione del{{ else }}Measured on{{ end }} {{ time.Format "02/01/2006" $d.measured_at }} · {{ $d.page_count }} {{ if $it }}pagine{{ else }}pages{{ end }}</strong></p>
+  <p>{{ if $it }}Questi dati descrivono la versione di <a href="{{ $d.base_url }}">openinnova.it</a> pubblicata al momento della rilevazione. Sono una fotografia di quella versione, non una misura in tempo reale della pagina che stai leggendo.{{ else }}These figures describe the version of <a href="{{ $d.base_url }}">openinnova.it</a> published at the time of measurement. They are a snapshot of that version, not a live measurement of the page you are reading.{{ end }}</p>
+</div>
+<dl class="impact-metrics">
+  <div><dt>{{ if $it }}Dati al primo caricamento{{ else }}Data on first load{{ end }}</dt><dd>{{ partial "impact-number.html" (merge $fmt (dict "value" (div $d.first_bytes 1000))) }} KB</dd></div>
+  <div><dt>{{ if $it }}Energia stimata¹{{ else }}Estimated energy¹{{ end }}</dt><dd>{{ partial "impact-number.html" (dict "lang" $lang "digits" 4 "value" $d.first.wh) }} Wh</dd></div>
+  <div><dt>{{ if $it }}Emissioni stimate{{ else }}Estimated emissions{{ end }}</dt><dd>{{ partial "impact-number.html" (dict "lang" $lang "digits" 4 "value" $d.first.g) }} g CO₂e</dd></div>
+</dl>
+<p class="impact-caption">{{ if $it }}Media aritmetica delle pagine, per un caricamento iniziale a cache vuota. ¹ Include l'energia operativa e quella attribuita alla produzione delle apparecchiature dal modello.{{ else }}Arithmetic mean across pages, for an initial load with an empty cache. ¹ Includes operational energy and energy attributed by the model to manufacturing equipment.{{ end }}</p>
+{{ $json := resources.FromString "data/footprint.json" ($d | jsonify (dict "indent" "  ")) | fingerprint "sha384" }}
+<p><a href="{{ $json.RelPermalink }}" download>{{ if $it }}Scarica dati, ipotesi e dettaglio delle pagine (JSON){{ else }}Download data, assumptions and page details (JSON){{ end }}</a></p>
+{{- else if eq $part "transfer" -}}
+<figure class="impact-chart">
+  <figcaption>{{ if $it }}Dati trasferiti per pagina, in media{{ else }}Average data transferred per page{{ end }}</figcaption>
+  {{ range $index, $value := slice $d.first_bytes $d.next_bytes }}
+  <div class="impact-row">
+    <div class="impact-label"><span>{{ if eq $index 0 }}{{ if $it }}Primo caricamento{{ else }}First load{{ end }}{{ else }}{{ if $it }}Pagina successiva, cache disponibile{{ else }}Next page, with cached assets{{ end }}{{ end }}</span><strong>{{ partial "impact-number.html" (merge $fmt (dict "value" (div $value 1000))) }} KB</strong></div>
+    <div class="impact-track" aria-hidden="true"><span class="impact-fill" style="{{ printf "width: %.4f%%" (mul (div $value $d.first_bytes) 100) | safeCSS }}"></span></div>
+  </div>
+  {{ end }}
+  <p class="impact-caption">{{ if $it }}Stessa scala, da zero. La seconda barra è una stima: assume che le risorse della pagina siano già in cache.{{ else }}Same scale, starting at zero. The second bar is an estimate assuming the page assets are already cached.{{ end }}</p>
+</figure>
+{{- else if eq $part "segments" -}}
+<figure class="impact-chart">
+  <figcaption>{{ if $it }}Come il modello ripartisce l'impatto{{ else }}How the model allocates impact{{ end }}</figcaption>
+  {{ range $d.segments }}
+  {{ $labels := dict "data_center" (cond $it "Data center" "Data centres") "network" (cond $it "Rete" "Networks") "device" (cond $it "Dispositivi delle persone" "User devices") }}
+  <div class="impact-row"><div class="impact-label"><span>{{ index $labels .id }}</span><strong>{{ partial "impact-number.html" (merge $fmt (dict "value" .percent)) }}%</strong></div><div class="impact-track" aria-hidden="true"><span class="impact-fill" style="{{ printf "width: %.4f%%" .percent | safeCSS }}"></span></div></div>
+  {{ end }}
+  <p class="impact-caption">{{ if $it }}Quote calcolate dai coefficienti del Sustainable Web Design Model v4, con la stessa intensità carbonica per tutti i segmenti. Non sono misure dei singoli dispositivi.{{ else }}Shares calculated from Sustainable Web Design Model v4 coefficients, using the same carbon intensity for all segments. These are not measurements of individual devices.{{ end }}</p>
+</figure>
+{{- else if eq $part "scale" -}}
+<div class="impact-growth">
+  <p class="impact-growth-kicker">{{ if $it }}Scenario a coefficienti costanti{{ else }}Constant-coefficient scenario{{ end }}</p>
+  <div class="impact-growth-panels" aria-hidden="true">
+    {{ range $metric := slice (dict "name" (cond $it "Emissioni attribuite" "Allocated emissions") "value" $d.first.g "unit" "g CO₂e" "digits" 4) (dict "name" (cond $it "Acqua per il raffreddamento" "Cooling water") "value" $water.ml_per_load "unit" "mL" "digits" 5) }}
+    <figure class="impact-growth-panel">
+      <figcaption>{{ $metric.name }} <span>({{ $metric.unit }})</span></figcaption>
+      <div class="impact-growth-axes">
+        <div class="impact-growth-y">
+          {{ range $count := slice 1000000 1000 1 }}
+          {{ $digits := cond (eq $count 1) $metric.digits (cond (eq $count 1000) 2 0) }}
+          <span>{{ partial "impact-number.html" (dict "lang" $lang "digits" $digits "value" (mul $metric.value $count)) }}</span>
+          {{ end }}
+        </div>
+        <div class="impact-growth-plot">
+          {{/* Both axes are logarithmic: 1, 1000, 1000000 are equally spaced.
+               Under the fixed-coefficient model y = value * count. */}}
+          {{/* The line itself is drawn in CSS (.impact-growth-plot::after), with the logo motif */}}
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
+            <path class="impact-growth-grid" d="M0 0H100 M0 50H100 M0 100H100 M0 0V100 M50 0V100 M100 0V100"/>
+          </svg>
+          <span class="impact-growth-dot impact-growth-dot-start"></span>
+          <span class="impact-growth-dot impact-growth-dot-middle"></span>
+          <span class="impact-growth-dot impact-growth-dot-end"></span>
+        </div>
+        <div class="impact-growth-x"><span>1</span><span>{{ if $it }}1.000{{ else }}1,000{{ end }}</span><span>{{ if $it }}1.000.000{{ else }}1,000,000{{ end }}</span></div>
+      </div>
+      <p class="impact-growth-axis-label">{{ if $it }}Caricamenti di pagina{{ else }}Page loads{{ end }}</p>
+    </figure>
+    {{ end }}
+  </div>
+  <p class="impact-caption">{{ if $it }}Entrambi gli assi sono logaritmici: ogni intervallo segnato vale ×1.000. Così restano visibili anche i valori più piccoli. Le linee rappresentano la moltiplicazione della stima media, non un andamento osservato.{{ else }}Both axes are logarithmic: each marked interval represents ×1,000. This keeps the smallest values visible. The lines show the average estimate multiplied by the load count, not an observed trend.{{ end }}</p>
+  <details class="impact-growth-values">
+    <summary>{{ if $it }}Leggi i valori del grafico{{ else }}Read the chart values{{ end }}</summary>
+    <table>
+      <caption>{{ if $it }}Stime per caricamenti con cache inizialmente vuota{{ else }}Estimates for loads starting with an empty cache{{ end }}</caption>
+      <thead><tr><th scope="col">{{ if $it }}Caricamenti{{ else }}Loads{{ end }}</th><th scope="col">CO₂e</th><th scope="col">{{ if $it }}Acqua¹{{ else }}Water¹{{ end }}</th></tr></thead>
+      <tbody>{{ range $count := slice 1 1000 1000000 }}
+        <tr><th scope="row">{{ if eq $count 1 }}1{{ else if eq $count 1000 }}{{ if $it }}1.000{{ else }}1,000{{ end }}{{ else }}{{ if $it }}1.000.000{{ else }}1,000,000{{ end }}{{ end }}</th>
+        <td>{{ partial "impact-number.html" (dict "lang" $lang "digits" (cond (eq $count 1) 4 2) "value" (mul $d.first.g (cond (eq $count 1000000) 1000 $count))) }} {{ if eq $count 1000000 }}kg{{ else }}g{{ end }}</td>
+        <td>{{ partial "impact-number.html" (dict "lang" $lang "digits" (cond (eq $count 1) 5 2) "value" (mul $water.ml_per_load (cond (eq $count 1000000) 1000 $count))) }} {{ if eq $count 1000000 }}L{{ else }}mL{{ end }}</td></tr>
+      {{ end }}</tbody>
+    </table>
+  </details>
+  <p class="impact-caption">{{ if $it }}¹ Acqua del solo raffreddamento, nello scenario di{{ else }}¹ Cooling water only, using the scenario of{{ end }} {{ partial "impact-number.html" (merge $fmt (dict "value" $water.wue_l_per_kwh)) }} L/kWh. {{ if $it }}Una richiesta indica qui un caricamento completo di pagina, non una singola richiesta HTTP.{{ else }}A request here means a complete page load, not an individual HTTP request.{{ end }}</p>
+</div>
+{{- else if eq $part "water" -}}
+<div class="impact-water">
+<p>{{ if $it }}Nello scenario di riferimento da{{ else }}In the reference scenario of{{ end }} <strong>{{ partial "impact-number.html" (merge $fmt (dict "value" $water.wue_l_per_kwh)) }} L/kWh</strong>, {{ if $it }}la stima è{{ else }}the estimate is{{ end }} <strong>{{ partial "impact-number.html" (dict "lang" $lang "digits" 5 "value" $water.ml_per_load) }} mL</strong> {{ if $it }}per caricamento. Per arrivare a una bottiglietta da mezzo litro servirebbero circa{{ else }}per load. Reaching half a litre would take approximately{{ end }} <strong>{{ partial "impact-number.html" (dict "lang" $lang "digits" 0 "value" (div $water.loads_per_500ml 1000)) }} {{ if $it }}mila{{ else }}thousand{{ end }}</strong> {{ if $it }}caricamenti iniziali.{{ else }}initial page loads.{{ end }}</p>
+<p>{{ if $it }}Applicando invece la media AWS Europa 2025 di{{ else }}Using the AWS Europe 2025 average of{{ end }} <strong>{{ partial "impact-number.html" (dict "lang" $lang "digits" 2 "value" $aws.wue_l_per_kwh) }} L/kWh</strong>, {{ if $it }}la stessa bottiglietta corrisponderebbe a circa{{ else }}the same half-litre bottle would correspond to approximately{{ end }} <strong>{{ partial "impact-number.html" (dict "lang" $lang "digits" 1 "value" (div $aws.loads_per_500ml 1000000)) }} {{ if $it }}milioni{{ else }}million{{ end }}</strong> {{ if $it }}di caricamenti. Questo secondo calcolo è uno scenario alternativo, non la misura del nodo che serve la tua visita.{{ else }}loads. This second calculation is an alternative scenario, not a measurement of the node serving your visit.{{ end }}</p>
+</div>
+{{- end -}}

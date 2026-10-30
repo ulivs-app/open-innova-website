@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-10-30T08:11:04.089062+00:00",
+  "base_url": "https://openinnova.it",
+  "version_label": "published-before-editorial-rewrite-2026-10-30",
+  "page_count": 14,
+  "model": "Sustainable Web Design Model v4",
+  "grid_g_co2e_per_kwh": 494,
+  "energy_kwh_per_gb": {
+    "data_center": [
+      0.055,
+      0.012
+    ],
+    "network": [
+      0.059,
+      0.013
+    ],
+    "device": [
+      0.08,
+      0.081
+    ]
+  },
+  "first_bytes": 18967.571428571428,
+  "next_bytes": 10169.57142857143,
+  "heaviest_bytes": 21215,
+  "first": {
+    "wh": 0.0056902714285714286,
+    "g": 0.0028109940857142857,
+    "kwh_dc": 1.0432164285714287e-06
+  },
+  "next": {
+    "wh": 0.003050871428571429,
+    "g": 0.0015071304857142858,
+    "kwh_dc": 5.593264285714287e-07
+  },
+  "segments": [
+    {
+      "id": "data_center",
+      "percent": 22.333333333333336
+    },
+    {
+      "id": "network",
+      "percent": 24.0
+    },
+    {
+      "id": "device",
+      "percent": 53.66666666666667
+    }
+  ],
+  "water": [
+    {
+      "id": "scenario",
+      "wue_l_per_kwh": 1.8,
+      "ml_per_load": 0.0018777895714285715,
+      "loads_per_500ml": 266270.5169992043
+    },
+    {
+      "id": "aws_europe_2025",
+      "wue_l_per_kwh": 0.05,
+      "ml_per_load": 5.216082142857143e-05,
+      "loads_per_500ml": 9585738.611971354
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "first_bytes": 19081,
+      "next_bytes": 10283
+    },
+    {
+      "path": "/chi-siamo/",
+      "first_bytes": 19041,
+      "next_bytes": 10243
+    },
+    {
+      "path": "/contatti/",
+      "first_bytes": 17844,
+      "next_bytes": 9046
+    },
+    {
+      "path": "/en/",
+      "first_bytes": 18499,
+      "next_bytes": 9701
+    },
+    {
+      "path": "/en/about/",
+      "first_bytes": 18753,
+      "next_bytes": 9955
+    },
+    {
+      "path": "/en/contact/",
+      "first_bytes": 17750,
+      "next_bytes": 8952
+    },
+    {
+      "path": "/en/open-innovation/",
+      "first_bytes": 18774,
+      "next_bytes": 9976
+    },
+    {
+      "path": "/en/privacy/",
+      "first_bytes": 17723,
+      "next_bytes": 8925
+    },
+    {
+      "path": "/en/products/",
+      "first_bytes": 19672,
+      "next_bytes": 10874
+    },
+    {
+      "path": "/en/transparency/",
+      "first_bytes": 20773,
+      "next_bytes": 11975
+    },
+    {
+      "path": "/open-innovation/",
+      "first_bytes": 19130,
+      "next_bytes": 10332
+    },
+    {
+      "path": "/privacy/",
+      "first_bytes": 17890,
+      "next_bytes": 9092
+    },
+    {
+      "path": "/prodotti/",
+      "first_bytes": 19401,
+      "next_bytes": 10603
+    },
+    {
+      "path": "/trasparenza/",
+      "first_bytes": 21215,
+      "next_bytes": 12417
+    }
+  ],
+  "page_sha256": {
+    "/": "c40dcd919907bfd2c1a9eade27797f173f904da4c4bb629caf01caeb17ce3e15",
+    "/chi-siamo/": "7b2b5448f6b4202a89b856bb8ee490bbbea1224e79852e18bff581e0dc57c76f",
+    "/contatti/": "4ab4f563d38b9992063add941bfe816950c1f03eb4e4321e06d2e091f1125078",
+    "/en/": "acc92dd6fd1ab494cc7162486fe7d87eea33ac55617e2c44e6542fe85ef91199",
+    "/en/about/": "67ceee8baacb9cfdb1511a81d72f9fc664d30691c443b30c960d21e14d78ec8b",
+    "/en/contact/": "59d13480d9521e4b7df93841983c62740da1a99d6f644f7197ab87b224b273f2",
+    "/en/open-innovation/": "01e2e54a0c731c4f8f032bb03a2975241cfcb0392e27551a14048e5f3aaf2ee9",
+    "/en/privacy/": "09262920b816776d7177a02f1a6227f5bc14e18d4fa671acdb933732374d512b",
+    "/en/products/": "1b597f44ca87a506343cf4ea28e491f1d8db23056a86c50dcd9d05ce0eea55e5",
+    "/en/transparency/": "947c1bd40557a20127925623e61f0cbfc38d14db7966d1cc29263e54e5f3455a",
+    "/open-innovation/": "a7b58e4c5f48811d76f7cf6d1d0909824b59f24c2749c2a41cf5c094fe0649bf",
+    "/privacy/": "46afa51eeb5dfada6078e43637b2c217f1029726038d8cca899de8081ce0da9c",
+    "/prodotti/": "10c22a92849784b2b04b6197ae808913434a8524b79ec9ff89fd4f849f626b6b",
+    "/trasparenza/": "daace10ce2e4332de8e0b39612e26f697acc54fd66834cf76dd48d4de9ebb124"
+  },
+  "assumptions": [
+    "Unweighted arithmetic mean across sitemap pages; not actual visitor traffic.",
+    "Response body and headers; HTML, same-origin CSS, JS, icons and img src. Not a complete browser/network trace.",
+    "Warm cache assumes all page assets already stored; immutable assets fresh, other cacheable assets revalidated with response-header size as a proxy.",
+    "No green hosting discount; operational and embodied model energy included.",
+    "Water scenarios apply WUE to modelled operational data-centre energy, an approximate allocation, not a measurement of this site's cooling water.",
+    "Water excludes electricity generation, hardware manufacturing, network and visitor-device water footprints.",
+    "AWS Europe 2025 WUE is a regional annual average, not the WUE of a specific CloudFront node."
+  ],
+  "sources": {
+    "model": "https://sustainablewebdesign.org/estimating-digital-emissions/",
+    "aws_wue": "https://sustainability.aboutamazon.com/aws-sustainability-fact-sheets/aws-fact-sheet-italy.pdf"
+  }
+}

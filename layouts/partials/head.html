@@ -75,3 +75,8 @@
 
 {{- /* AI Agent / LLM Support */ -}}
 <link rel="alternate" type="text/plain" href="{{ "llms.txt" | absURL }}" title="For AI Agents">
+
+{{- if .HasShortcode "footprint" }}
+{{- $impactStyle := resources.Get "css/footprint.css" | minify | fingerprint "sha384" }}
+<link rel="stylesheet" href="{{ $impactStyle.RelPermalink }}" integrity="{{ $impactStyle.Data.Integrity }}" crossorigin="anonymous">
+{{- end }}
