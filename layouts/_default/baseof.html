@@ -46,21 +46,21 @@
     </button>
     <h2 id="cookie-modal-title" class="cookie-modal__title">
       {{- if eq .Language.Lang "it" -}}
-      Sorpreso che non ti abbiamo chiesto il consenso?
+      Questo sito non usa cookie
       {{- else -}}
-      Surprised we never asked for your consent?
+      This website does not use cookies
       {{- end -}}
     </h2>
     <p class="cookie-modal__body">
       {{- if eq .Language.Lang "it" -}}
-      Perché non usiamo cookie. Nessuno: né tecnici di tracciamento, né di profilazione. <br>Non sappiamo chi sei, da dove arrivi o cosa hai guardato, e non vogliamo saperlo, per preservare completamente la tua privacy. <br>La tua visita è completamente anonima.
+      Non impostiamo cookie e non utilizziamo strumenti di analytics o profilazione. L’infrastruttura tratta i dati tecnici necessari a distribuire le pagine. Se ci scrivi, riceviamo i dati che inserisci nella tua email.
       {{- else -}}
-      Because we don't use cookies. None: no tracking cookies, no profiling cookies. <br>We don't know who you are, where you came from, or what you looked at — and we don't want to. <br>Your visit is fully anonymous.
+      We do not set cookies or use analytics or profiling tools. The infrastructure processes technical data needed to deliver pages. If you write to us, we receive the data you include in your email.
       {{- end -}}
     </p>
     <p class="cookie-modal__body">
       {{- if eq .Language.Lang "it" -}}
-      Vuoi i <a href="/trasparenza/">dettagli tecnici</a>? Spieghiamo come è fatto il sito e cosa abbiamo deciso di non usare. Per la versione formale, leggi la <a href="/privacy/">privacy policy</a>.
+      Leggi i <a href="/trasparenza/">dettagli tecnici</a>. Spieghiamo come è fatto il sito e cosa abbiamo deciso di non usare. Per il trattamento dei dati, consulta l’<a href="/privacy/">informativa privacy</a>.
       {{- else -}}
       Want the <a href="/en/transparency/">technical details</a>? We explain how the site is built and what we chose not to use. For the formal version, read our <a href="/en/privacy/">privacy policy</a>.
       {{- end -}}

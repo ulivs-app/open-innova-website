@@ -15,7 +15,7 @@
 
     {{- /* Quick Links */ -}}
     <div class="footer-section">
-      <h3 class="footer-heading">{{ if eq .Language.Lang "it" }}Link Veloci{{ else }}Quick Links{{ end }}</h3>
+      <h3 class="footer-heading">{{ if eq .Language.Lang "it" }}Esplora il sito{{ else }}Quick Links{{ end }}</h3>
       <ul>
         {{- range .Site.Menus.main }}
         <li><a href="{{ .URL }}">{{ .Name }}</a></li>
@@ -55,7 +55,7 @@
   {{- /* Footer Bottom */ -}}
   <div class="footer-bottom">
     <p class="footer-copyright">
-      &copy; {{ now.Format "2006" }} {{ $company.name }}. {{ if eq .Language.Lang "it" }}Tutti i diritti riservati.{{ else }}All rights reserved.{{ end }}
+      &copy; {{ now.Format "2006" }} {{ $company.name }} {{ if eq .Language.Lang "it" }}Tutti i diritti riservati.{{ else }}All rights reserved.{{ end }}
     </p>
     {{- if $company.vatId }}
     <p class="footer-legal-info">

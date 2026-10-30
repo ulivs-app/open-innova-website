@@ -2,7 +2,7 @@
 
 Static website for [Open Innova](https://openinnova.it) — open innovation consulting and custom software.
 
-Built with [Hugo](https://gohugo.io), deployed to AWS S3. Bilingual (Italian / English), minimal JavaScript, no cookies, no trackers, no external CDN.
+Built with [Hugo](https://gohugo.io), deployed to AWS S3. Bilingual (Italian / English), minimal JavaScript, no cookies or trackers, and no externally loaded fonts or libraries. CloudFront distributes the site.
 
 ## Quick start
 

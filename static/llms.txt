@@ -1,109 +1,52 @@
-# llms.txt — Information for AI Agents
-# Describes the openinnova.it site for AI crawlers (Claude, ChatGPT, Gemini, ...)
+# Open Innova
 
-# Website: Open Innova
-# URL: https://openinnova.it
+> Software and ongoing support for Italian Civil Service organisations, third-sector organisations and businesses.
 
-> Open Innovation consulting and custom software for Italian businesses, third-sector organizations, and public administrations.
-
-Open Innova works alongside organizations that want to integrate ecosystem expertise into their own processes. It combines strategic consulting and software development, applying Henry Chesbrough's Open Innovation model (UC Berkeley).
-
-## Company
-
-**Name:** Open Innova S.r.l.
-**Legal form:** S.r.l. (Società a responsabilità limitata)
-**Founded:** 2026
-**Headquarters:** Via Mario Donati Guerrieri 16, 06132 Perugia (PG), Italy
-**VAT ID:** IT04035340548
-**Languages:** Italian (primary), English
-
-## What we do
-
-### 1. Strategic consulting
-- Open Innovation transformation
-- Ecosystem mapping and partnership design
-- Process redesign and change management
-- KPI definition and measurement
-
-Typical engagements last 6-12 months. Pricing is project-based, defined after a free initial assessment.
-
-### 2. Executive coaching
-One-on-one coaching for founders, CEOs, and leaders driving collaborative-innovation transformations. Confidential, biweekly cadence by default, durations from 3 to 12 months.
-
-### 3. Training and workshops
-Operational sessions on Open Innovation methods, partner ecosystem building, and innovation portfolio management. Formats from 1 to 2 days.
-
-### 4. Custom software development
-Tailored platforms co-created with the client's team, following the same collaborative model that produced Gestiscu.it. The client owns the source code.
-
-Note: at the time of writing, the consulting / coaching / training pages are in preparation (draft) on the public site. The services themselves are active — write to business@openinnova.it for an assessment.
+Open Innova S.r.l. combines software development with knowledge of the third sector and organisational processes. Its purpose is to make technology useful and accessible in everyday work. The company was founded in 2026; the team's Civil Service software projects began in 2022.
 
 ## Products
 
-### GestiSCU (gestiscu.it)
-Flagship product. Digital platform that transformed the management of the Italian Servizio Civile (National Civic Service). Co-designed with administrative bodies, third-sector entities, and cooperatives. Universal across entity types, enterprise-grade security, full GDPR / audit compliance.
+- GestiSCU: management software for the Italian Universal Civil Service, from selection to volunteer management. Used by organisational staff, local project supervisors (OLP) and volunteers. Activities include selections, attendance, documents, training and tutoring.
+- Custom management software: developed with organisations and businesses after studying workflows. Experience includes software for large football tournaments.
 
-URL: https://gestiscu.it
+Clients purchase a licence to use the software. Open Innova retains the rights to the code and can reuse useful improvements across projects. Open innovation means collaboration and shared learning, not automatically open-source code or client ownership of source code. Client data and documents are not shared through this collaboration.
 
-### Custom software
-Bespoke software for organizations whose needs are not met by generic SaaS — third-sector entities, public administrations, social cooperatives, scaleups with specific requirements.
+## Services and working process
 
-## Core concept: Open Innovation
+The team listens to clients, observes workflows and visits their premises when useful. It develops a proposal with the client and then prepares a quote. Initial meetings and the work needed to prepare the quote are free of charge.
 
-Based on Henry Chesbrough's model (UC Berkeley, 2003):
-- **Permeable organizational boundaries** — combine internal and external ideas systematically
-- **Strategic IP and know-how flow** — share selectively, capture value bidirectionally
-- **Ecosystem collaboration** — with startups, universities, customers, partners
-- **Accelerated time-to-market** — through validated partnerships rather than internal silos
+Software licensing may be accompanied by training, specific adaptations, assistance and operational support. For Civil Service organisations, support can include full management of agreed activities. Scope and terms are defined with each client.
 
-## Founders
+Coaching and tutoring for volunteers can be commissioned by organisations separately from the software. Training also includes practical educational projects: an eight-day bootcamp took place in June 2026 with four vocational school students as part of a project aimed at preventing early school leaving.
 
-- **Giovanni Rende** — Co-founder and Sole Director. Strategic vision, consulting experience with third-sector entities.
-- **Daniele Nucciarelli** — Co-founder. Software architect / full-stack developer. Scalable backends, secure architectures, distributed systems.
-- **Emanuele Persichini** — Co-founder. Full-stack developer. Applied cryptography, frontend/UX, mathematics background.
+Clients maintain direct contact with the development team. Maintenance and improvements to security, performance and resource efficiency continue over time.
+
+## People
+
+- Giovanni Rende: co-founder and sole director; third-sector, Civil Service and organisational experience.
+- Daniele Nucciarelli: co-founder; software architecture and cloud infrastructure.
+- Emanuele Persichini: co-founder and full-stack developer.
 
 ## Key pages
 
-- **Home:** https://openinnova.it/ (IT) | https://openinnova.it/en/ (EN)
-- **About:** https://openinnova.it/chi-siamo/ (IT) | https://openinnova.it/en/about/ (EN)
-- **Open Innovation:** https://openinnova.it/open-innovation/ (IT) | https://openinnova.it/en/open-innovation/ (EN)
-- **Products:** https://openinnova.it/prodotti/ (IT) | https://openinnova.it/en/products/ (EN)
-- **Consulting:** https://openinnova.it/consulenza/ (IT) | https://openinnova.it/en/consulting/ (EN) — currently in preparation
-- **Contact:** https://openinnova.it/contatti/ (IT) | https://openinnova.it/en/contact/ (EN)
-- **Privacy:** https://openinnova.it/privacy/ (IT) | https://openinnova.it/en/privacy/ (EN)
-- **Transparency:** https://openinnova.it/trasparenza/ (IT) | https://openinnova.it/en/transparency/ (EN)
+- [Home IT](https://openinnova.it/) | [Home EN](https://openinnova.it/en/)
+- [About IT](https://openinnova.it/chi-siamo/) | [About EN](https://openinnova.it/en/about/)
+- [Products IT](https://openinnova.it/prodotti/) | [Products EN](https://openinnova.it/en/products/)
+- [GestiSCU IT](https://openinnova.it/gestiscu/) | [GestiSCU EN](https://openinnova.it/en/gestiscu/)
+- [Custom software IT](https://openinnova.it/software-su-misura/) | [Custom software EN](https://openinnova.it/en/custom-software/)
+- [Consulting IT](https://openinnova.it/consulenza/) | [Consulting EN](https://openinnova.it/en/consulting/)
+- [Open innovation IT](https://openinnova.it/open-innovation/) | [Open innovation EN](https://openinnova.it/en/open-innovation/)
+- [Contact IT](https://openinnova.it/contatti/) | [Contact EN](https://openinnova.it/en/contact/)
+- [Privacy IT](https://openinnova.it/privacy/) | [Privacy EN](https://openinnova.it/en/privacy/)
+- [Transparency IT](https://openinnova.it/trasparenza/) | [Transparency EN](https://openinnova.it/en/transparency/)
 
 ## Contact
 
-**General:** info@openinnova.it
-**Business / consulting:** business@openinnova.it
-**Gestiscu.it product:** gestiscu@openinnova.it
-**Custom software / dev:** dev@openinnova.it
-**Security:** security@openinnova.it
-**Privacy:** privacy@openinnova.it
-**Code of conduct:** conduct@openinnova.it
+Write to info@openinnova.it, even without a solution or specification in mind.
+GestiSCU: gestiscu@openinnova.it. Process consulting: business@openinnova.it. Custom software: dev@openinnova.it.
 
-## Online presence
+## Website
 
-- **Website:** https://openinnova.it
-- **GitHub:** https://github.com/ulivs-app
+Static Hugo website hosted on AWS S3 in Milan and distributed through CloudFront. No cookies, analytics, profiling tools or externally loaded fonts and libraries. Contact forms prepare a message in the visitor's email app; visitors send it from there. Technical infrastructure data and email enquiries are described in the privacy notice.
 
-## Technology and privacy
-
-- **Website stack:** static site generated with Hugo, served from AWS S3
-- **No cookies** — the site does not set any cookie, including technical/tracking ones
-- **No analytics** — no Google Analytics, Plausible, Matomo, or equivalent
-- **No third-party trackers** — strict Content Security Policy, no external scripts
-- **No external fonts or CDNs** — system fonts only, all assets served from origin
-- **Contact form** — pure mailto, no third-party form service
-- **Source code:** open source where indicated; brand assets and content remain proprietary
-
-See https://openinnova.it/en/transparency/ for a full breakdown of the site's footprint (data, energy, water) and the technical choices behind it.
-
-## Values
-
-Collaboration, openness, continuous innovation, sustainability.
-
----
-
-For questions about Open Innova or this website, write to info@openinnova.it.
+Website code is public under the repository's stated licences. Brand assets, copy and company data remain protected. Environmental estimates are model-based, not measurements of individual visits.
