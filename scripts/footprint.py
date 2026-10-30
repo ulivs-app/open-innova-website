@@ -142,6 +142,7 @@ def report_data(rows, base, version, page_hashes):
             "Response body and headers; HTML, same-origin CSS, JS, icons and img src. Not a complete browser/network trace.",
             "Warm cache assumes all page assets already stored; immutable assets fresh, other cacheable assets revalidated with response-header size as a proxy.",
             "No green hosting discount; operational and embodied model energy included.",
+            "Scaling by page loads uses fixed coefficients: attribution only, not a measured or marginal consumption curve.",
             "Water scenarios apply WUE to modelled operational data-centre energy, an approximate allocation, not a measurement of this site's cooling water.",
             "Water excludes electricity generation, hardware manufacturing, network and visitor-device water footprints.",
             "AWS Europe 2025 WUE is a regional annual average, not the WUE of a specific CloudFront node."

@@ -50,3 +50,33 @@
 .impact-growth-values caption { text-align: left; margin-block: var(--space-md); }
 @media (max-width: 700px) { .impact-growth-panels { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .impact-metrics { grid-template-columns: 1fr; } .impact-label { align-items: baseline; } }
+
+/* Illustrated comparisons keep explanatory text in the document, not inside images. */
+.impact-bottle-story { margin: var(--space-xl) 0; padding: var(--space-xl); background: var(--color-surface-light); border-radius: var(--radius-lg); }
+.impact-bottle-comparison { display: grid; grid-template-columns: minmax(0, 2fr) auto minmax(0, 1fr); gap: var(--space-lg); align-items: center; text-align: center; }
+.impact-bottle-comparison p { margin-block: var(--space-sm); }
+.impact-big-number { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: var(--font-weight-bold); color: var(--color-heading); line-height: 1.15; font-variant-numeric: tabular-nums; }
+.impact-page-mosaic { display: grid; grid-template-columns: repeat(19, minmax(0, 1fr)); gap: 4px; max-width: 22rem; margin: var(--space-lg) auto; }
+.impact-page-mosaic span { aspect-ratio: 3 / 4; border: 1px solid var(--color-secondary); border-top-width: 3px; border-radius: 1px; }
+.impact-equivalence { font-size: var(--font-size-3xl); color: var(--color-text-light); }
+.impact-bottle-icon { width: 110px; height: 220px; display: block; margin: var(--space-lg) auto; }
+.impact-bottle-outline { fill: none; stroke: var(--color-heading); stroke-width: 3; }
+.impact-bottle-water { fill: var(--color-brand-green); opacity: .55; }
+.impact-bottle-cap { fill: var(--color-heading); }
+.impact-bottle-icon text { fill: var(--color-heading); font: bold 24px system-ui; }
+.impact-bottle-story figcaption { font-size: var(--font-size-sm); text-align: center; margin-top: var(--space-lg); }
+.impact-paper-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xl); text-align: center; padding-block: var(--space-xl); }
+.impact-paper-comparison > div { padding: var(--space-lg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.impact-paper-comparison p { margin-block: var(--space-sm); }
+.impact-object-icon { width: 120px; height: 100px; fill: none; stroke: var(--color-secondary); stroke-width: 3; margin-inline: auto; }
+.impact-disclosure { border-bottom: 1px solid var(--color-border); padding-block: var(--space-lg); }
+.impact-disclosure > summary { cursor: pointer; color: var(--color-link); font-weight: var(--font-weight-semibold); }
+.impact-disclosure > summary:focus-visible { outline: 2px solid var(--color-link); outline-offset: 4px; }
+.impact-disclosure[open] > summary { margin-bottom: var(--space-lg); }
+.impact-disclosure p { font-size: var(--font-size-base); }
+@media (max-width: 600px) {
+  .impact-bottle-story { padding: var(--space-lg); }
+  .impact-bottle-comparison, .impact-paper-comparison { grid-template-columns: 1fr; }
+  .impact-equivalence { line-height: 1; }
+  .impact-page-mosaic { max-width: 20rem; }
+}

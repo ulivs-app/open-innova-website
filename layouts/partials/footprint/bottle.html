@@ -1,0 +1,27 @@
+{{- $d := .data -}}{{- $it := eq .lang "it" -}}
+{{- $water := index $d.water 0 -}}
+{{- $groups := int (math.Round (div $water.loads_per_500ml 1000)) -}}
+<figure class="impact-bottle-story">
+  <div class="impact-bottle-comparison">
+    <div class="impact-pages-side">
+      <p class="impact-big-number">{{ $groups }} {{ if $it }}mila{{ else }}thousand{{ end }}</p>
+      <p>{{ if $it }}caricamenti di pagina{{ else }}page loads{{ end }}</p>
+      <div class="impact-page-mosaic" aria-hidden="true">{{ range seq $groups }}<span></span>{{ end }}</div>
+      <p class="impact-caption">{{ if $it }}Ogni piccola pagina rappresenta circa 1.000 caricamenti.{{ else }}Each small page represents about 1,000 loads.{{ end }}</p>
+    </div>
+    <span class="impact-equivalence" aria-hidden="true">≈</span>
+    <div class="impact-bottle-side">
+      <p class="impact-big-number">500 mL</p>
+      <p>{{ if $it }}una bottiglietta d’acqua{{ else }}one small bottle of water{{ end }}</p>
+      <svg class="impact-bottle-icon" viewBox="0 0 120 240" aria-hidden="true" focusable="false">
+        <path class="impact-bottle-water" d="M24 90Q42 78 60 90T96 90V211Q96 223 83 223H37Q24 223 24 211Z"/>
+        <path class="impact-bottle-outline" d="M45 23H75V46Q75 53 85 61L96 72Q101 77 101 89V210Q101 229 82 229H38Q19 229 19 210V89Q19 77 24 72L35 61Q45 53 45 46Z"/>
+        <rect class="impact-bottle-cap" x="41" y="9" width="38" height="15" rx="4"/>
+        <path class="impact-bottle-outline" d="M22 119H98M22 178H98"/>
+        <text x="60" y="154" text-anchor="middle">½ L</text>
+      </svg>
+    </div>
+  </div>
+  <figcaption>{{ if $it }}Equivalenza calcolata con un coefficiente di raffreddamento di{{ else }}Equivalence calculated using a cooling coefficient of{{ end }} {{ partial "impact-number.html" (dict "lang" .lang "digits" 1 "value" $water.wue_l_per_kwh) }} L/kWh.</figcaption>
+</figure>
+<p class="impact-caption">{{ if $it }}Media dei primi caricamenti, a cache vuota, della versione rilevata il{{ else }}Average first loads, with an empty cache, for the version measured on{{ end }} {{ time.Format "02/01/2006" $d.measured_at }}. {{ if $it }}Il volume riguarda l’acqua attribuita al raffreddamento dei data center.{{ else }}The volume covers water allocated to data-centre cooling.{{ end }}</p>

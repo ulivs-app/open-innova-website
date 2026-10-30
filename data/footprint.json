@@ -156,7 +156,8 @@
     "No green hosting discount; operational and embodied model energy included.",
     "Water scenarios apply WUE to modelled operational data-centre energy, an approximate allocation, not a measurement of this site's cooling water.",
     "Water excludes electricity generation, hardware manufacturing, network and visitor-device water footprints.",
-    "AWS Europe 2025 WUE is a regional annual average, not the WUE of a specific CloudFront node."
+    "AWS Europe 2025 WUE is a regional annual average, not the WUE of a specific CloudFront node.",
+    "Scaling by page loads uses fixed coefficients: attribution only, not a measured or marginal consumption curve."
   ],
   "sources": {
     "model": "https://sustainablewebdesign.org/estimating-digital-emissions/",

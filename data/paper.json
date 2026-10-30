@@ -1,0 +1,23 @@
+{
+  "source": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2026",
+  "workbook": "https://assets.publishing.service.gov.uk/media/6a6c9748862aaf18d9c62ac9/ghg-conversion-factors-2026-flat-format-revised.xlsx",
+  "factor_year": 2026,
+  "material": "Paper and board: paper",
+  "unit": "kg CO2e per tonne",
+  "virgin_kg_co2e_per_tonne": 1343.59114,
+  "recycled_kg_co2e_per_tonne": 1048.59114,
+  "source_cells": [
+    "J4112",
+    "J4115"
+  ],
+  "sheet_xml": "sheet2.xml",
+  "width_m": 0.21,
+  "height_m": 0.297,
+  "grammage_g_m2": 80,
+  "assumptions": [
+    "Illustrative A4 sheet; generic UK material-production factors, not a specific paper brand or printer.",
+    "Excludes printing energy, ink/toner, printer manufacture, distribution and disposal.",
+    "Web side is average cold page load from the dated footprint snapshot, not a timed reading session.",
+    "One web page is not necessarily one printed sheet; no measured whole-site printing comparison."
+  ]
+}

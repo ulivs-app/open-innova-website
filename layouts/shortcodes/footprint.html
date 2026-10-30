@@ -5,7 +5,11 @@
 {{- $water := index $d.water 0 -}}
 {{- $aws := index $d.water 1 -}}
 {{- $fmt := dict "lang" $lang "digits" 1 -}}
-{{- if eq $part "summary" -}}
+{{- if eq $part "bottle" -}}
+{{ partial "footprint/bottle.html" (dict "data" $d "lang" $lang) }}
+{{- else if or (eq $part "paper") (eq $part "paper-details") -}}
+{{ partial "footprint/paper.html" (dict "data" $d "lang" $lang "mode" (cond (eq $part "paper-details") "details" "visual")) }}
+{{- else if eq $part "summary" -}}
 <div class="impact-note">
   <p><strong>{{ if $it }}Rilevazione del{{ else }}Measured on{{ end }} {{ time.Format "02/01/2006" $d.measured_at }} · {{ $d.page_count }} {{ if $it }}pagine{{ else }}pages{{ end }}</strong></p>
   <p>{{ if $it }}Questi dati descrivono la versione di <a href="{{ $d.base_url }}">openinnova.it</a> pubblicata al momento della rilevazione. Sono una fotografia di quella versione, non una misura in tempo reale della pagina che stai leggendo.{{ else }}These figures describe the version of <a href="{{ $d.base_url }}">openinnova.it</a> published at the time of measurement. They are a snapshot of that version, not a live measurement of the page you are reading.{{ end }}</p>

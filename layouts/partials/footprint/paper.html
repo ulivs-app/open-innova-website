@@ -1,0 +1,33 @@
+{{- $d := .data -}}{{- $it := eq .lang "it" -}}{{- $lang := .lang -}}
+{{- $p := hugo.Data.paper -}}
+{{- $mass := mul $p.width_m $p.height_m $p.grammage_g_m2 -}}
+{{- $low := div (mul $mass $p.recycled_kg_co2e_per_tonne) 1000 -}}
+{{- $high := div (mul $mass $p.virgin_kg_co2e_per_tonne) 1000 -}}
+{{- if eq .mode "details" -}}
+<details class="impact-disclosure" id="{{ if $it }}confronto-carta{{ else }}paper-comparison{{ end }}">
+  <summary>{{ if $it }}Cosa comprende il confronto con la carta?{{ else }}What does the paper comparison include?{{ end }}</summary>
+<p>{{ if $it }}Il rapporto fra queste stime è circa{{ else }}The ratio between these estimates is about{{ end }} <strong>{{ partial "impact-number.html" (dict "lang" $lang "digits" 1 "value" (div $low $d.first.g 1000)) }}–{{ partial "impact-number.html" (dict "lang" $lang "digits" 1 "value" (div $high $d.first.g 1000)) }} {{ if $it }}mila a uno{{ else }}thousand to one{{ end }}</strong>. {{ if $it }}Il rapporto riguarda i due valori riportati, con i rispettivi confini di calcolo.{{ else }}This ratio concerns the two reported values and their respective calculation boundaries.{{ end }}</p>
+
+  <p>{{ if $it }}Per la carta usiamo un foglio A4 (210 × 297 mm) da 80 g/m² e i fattori britannici 2026 di produzione della carta:{{ else }}For paper, we use an A4 sheet (210 × 297 mm), 80 g/m², and the 2026 UK paper-production factors:{{ end }} {{ partial "impact-number.html" (dict "lang" $lang "digits" 2 "value" $p.recycled_kg_co2e_per_tonne) }}–{{ partial "impact-number.html" (dict "lang" $lang "digits" 2 "value" $p.virgin_kg_co2e_per_tonne) }} kg CO₂e/t. <a href="{{ $p.source }}">{{ if $it }}Fonte e tabelle ufficiali{{ else }}Source and official tables{{ end }}</a>.</p>
+  <p>{{ if $it }}Sono esclusi inchiostro, energia della stampante, produzione della stampante, distribuzione e smaltimento. Il dato web deriva dal modello SWDM e non misura il tempo trascorso a leggere sullo schermo. Non calcoliamo quindi un “risparmio” della lettura digitale.{{ else }}Ink, printer energy and manufacture, distribution and disposal are excluded. The web figure comes from SWDM and does not measure time spent reading on screen. We therefore do not calculate a digital-reading “saving”.{{ end }}</p>
+  <p>{{ if $it }}Per confrontare la stampa dell’intero sito servirebbero il numero di fogli dopo l’impaginazione, il tipo di carta e di stampa, e un percorso di lettura digitale definito. Una pagina web può occupare più fogli.{{ else }}Comparing a printout of the entire site would require the laid-out sheet count, paper and printing specifications, and a defined digital reading journey. One web page can fill several sheets.{{ end }}</p>
+  {{ $json := resources.FromString "data/paper.json" ($p | jsonify (dict "indent" "  ")) | fingerprint "sha384" }}
+  <p><a href="{{ $json.RelPermalink }}" download>{{ if $it }}Dati e ipotesi del confronto (JSON){{ else }}Comparison data and assumptions (JSON){{ end }}</a></p>
+</details>
+{{- else -}}
+<div class="impact-paper-comparison">
+  <div>
+    <svg class="impact-object-icon" viewBox="0 0 120 100" aria-hidden="true" focusable="false"><path d="M29 6H73L92 25V94H29Z M73 6V25H92 M40 43H79 M40 56H79 M40 69H65"/></svg>
+    <p>{{ if $it }}Produrre un foglio A4{{ else }}Producing one A4 sheet{{ end }}</p>
+    <p class="impact-big-number">{{ partial "impact-number.html" (dict "lang" $lang "digits" 1 "value" $low) }}–{{ partial "impact-number.html" (dict "lang" $lang "digits" 1 "value" $high) }} g</p>
+    <p class="impact-caption">CO₂e · {{ if $it }}carta da 80 g/m², riciclata o vergine{{ else }}80 g/m² paper, recycled or virgin{{ end }}</p>
+  </div>
+  <div>
+    <svg class="impact-object-icon" viewBox="0 0 120 100" aria-hidden="true" focusable="false"><rect x="9" y="14" width="102" height="72" rx="7"/><path d="M9 34H111 M21 24H23 M31 24H33 M41 24H43 M26 49H94 M26 62H75"/></svg>
+    <p>{{ if $it }}Caricare una pagina del sito{{ else }}Loading one page of this site{{ end }}</p>
+    <p class="impact-big-number">{{ partial "impact-number.html" (dict "lang" $lang "digits" 4 "value" $d.first.g) }} g</p>
+    <p class="impact-caption">CO₂e · {{ if $it }}stima media, primo caricamento{{ else }}average estimate, first load{{ end }}</p>
+  </div>
+</div>
+<p class="impact-caption">{{ if $it }}Confronto tra produzione della carta e stima media di un primo caricamento del sito. Rilevazione web del{{ else }}Paper production compared with the average estimated first load of the site. Web measurement dated{{ end }} {{ time.Format "02/01/2006" $d.measured_at }}. <a href="#{{ if $it }}confronto-carta{{ else }}paper-comparison{{ end }}">{{ if $it }}Fonti e ipotesi di calcolo{{ else }}Sources and assumptions{{ end }}</a>.</p>
+{{- end -}}

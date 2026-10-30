@@ -316,11 +316,16 @@ a local preview must never overwrite production data under a production label.
 
 The `footprint` shortcode renders numbers, cache and model-share charts from this
 single dataset. It also exports a downloadable, fingerprinted JSON resource so
-updated data cannot be hidden by the long-lived asset cache. The local CSS and
-small selector script load only on pages using the shortcode. Without JavaScript,
-all charts and the one-million-load scenario remain readable. No visitor counts
+updated data cannot be hidden by the long-lived asset cache. The local CSS loads only on pages using the shortcode. The bottle mosaic, paper
+comparison and cache charts use HTML/CSS/SVG and require no dedicated JavaScript.
+Details remain available in native disclosures and accessible tables. No visitor counts
 or tracking are collected. Water figures represent cooling scenarios only, not
-a complete water footprint.
+a complete water footprint. The page does not project consumption as a function of visit counts; the model’s
+constant-coefficient attribution and its limitations are explained in a disclosure. Paper factors and their
+boundaries are recorded separately in `data/paper.json`.
+
+See [environmental reporting](docs/environmental-reporting.md) for CloudFront
+traffic exports, access requirements and limits on annual water estimates.
 
 ---
 
