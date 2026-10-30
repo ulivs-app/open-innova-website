@@ -100,6 +100,33 @@ security_check() {
   log_info "Security checks passed"
 }
 
+# Accessibility gate (WCAG 2.2 AA): every deploy must pass scripts/a11y_check.py
+accessibility_check() {
+  if [ "${SKIP_A11Y:-}" = "1" ]; then
+    log_warn "SKIP_A11Y=1: accessibility checks skipped. The site may no longer be accessible."
+    read -p "Deploy without accessibility checks? (y/n) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+      exit 1
+    fi
+    return
+  fi
+
+  log_info "Running accessibility checks (WCAG 2.2 AA)..."
+  if [ ! -x .venv/bin/python ] || ! .venv/bin/python -c "import playwright, axe_playwright_python" &> /dev/null; then
+    log_info "Installing accessibility tooling in .venv..."
+    python3 -m venv .venv && .venv/bin/pip install --quiet -r requirements-dev.txt \
+      || { log_error "Could not install requirements-dev.txt"; exit 1; }
+  fi
+
+  if .venv/bin/python scripts/a11y_check.py public; then
+    log_info "Accessibility checks passed"
+  else
+    log_error "Accessibility checks failed. Fix the problems above before deploying."
+    exit 1
+  fi
+}
+
 # Deploy to S3
 deploy_to_s3() {
   log_info "Deploying to S3 bucket: $BUCKET_NAME"
@@ -178,6 +205,7 @@ main() {
   check_prerequisites
   build_site
   security_check
+  accessibility_check
 
   # Ask for confirmation before deploying
   log_warn "Ready to deploy to S3"

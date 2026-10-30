@@ -170,6 +170,7 @@ Before submitting your PR:
 - [ ] Images have `alt` text, `width`, `height`
 - [ ] No secrets in code (no API keys, credentials, emails)
 - [ ] Semantic HTML used throughout
+- [ ] `hugo && .venv/bin/python scripts/a11y_check.py` passes (WCAG 2.2 AA) and the manual checks in [docs/accessibility.md](docs/accessibility.md) are done
 - [ ] CSS uses only token variables
 
 ## License

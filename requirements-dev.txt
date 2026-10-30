@@ -1,0 +1,4 @@
+# Dev tooling only (accessibility checks): nothing here is shipped to the site.
+# Install: python3 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
+playwright==1.64.1
+axe-playwright-python==0.1.8

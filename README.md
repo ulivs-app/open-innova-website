@@ -10,6 +10,7 @@ Built with [Hugo](https://gohugo.io), deployed to AWS S3. Bilingual (Italian / E
 
 - **Hugo extended** v0.100+ — https://gohugo.io/installation/
 - **AWS CLI** v2 — only needed for deployment
+- **Python 3** and **Google Chrome** — for the accessibility checks (`deploy.sh` installs the rest in `.venv`)
 
 ### Local development
 
@@ -63,7 +64,8 @@ Draft pages are excluded from the production build.
 │   └── company.json           # Real company data (gitignored)
 ├── docs/                   # Internal documentation
 └── scripts/
-    ├── deploy.sh           # AWS S3 deployment
+    ├── deploy.sh           # AWS S3 deployment (runs the accessibility gate)
+    ├── a11y_check.py       # WCAG 2.2 AA checks on the built site (axe + keyboard + reflow)
     └── footprint.py        # Per-visit data, energy, CO₂e and water estimate
 ```
 
@@ -188,11 +190,11 @@ export AWS_PROFILE=open-innova-deploy
 The script:
 
 1. Runs `hugo` (excluding drafts)
-2. Syncs `public/` to S3 with proper cache headers
-3. Sets HTML to `must-revalidate` (no caching)
-4. Sets static assets to 1-year `immutable` cache
-5. Invalidates CloudFront (if configured)
-6. Runs a basic credential scan before upload
+2. Runs a basic credential scan and the **accessibility checks** (WCAG 2.2 AA): the deploy stops if any page fails — see [docs/accessibility.md](docs/accessibility.md)
+3. Syncs `public/` to S3 with proper cache headers
+4. Sets HTML to `must-revalidate` (no caching)
+5. Sets static assets to 1-year `immutable` cache
+6. Invalidates CloudFront (if configured)
 
 See [docs/deployment-aws-s3.md](docs/deployment-aws-s3.md) for the full setup.
 
@@ -200,6 +202,7 @@ See [docs/deployment-aws-s3.md](docs/deployment-aws-s3.md) for the full setup.
 
 ```bash
 hugo
+.venv/bin/python scripts/a11y_check.py   # do not deploy if it fails
 
 aws s3 sync public/ s3://openinnova-website \
   --delete \
