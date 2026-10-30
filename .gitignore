@@ -70,3 +70,12 @@ aws_credentials
 # === DEVELOPMENT ===
 .env.development.local
 .env.test.local
+
+# Private editorial interviews and original copy backups
+.copy-review/
+# Design mockups (contain proprietary copy)
+.design-review/
+
+# Python bytecode and dev virtualenv (accessibility tooling)
+__pycache__/
+.venv/
